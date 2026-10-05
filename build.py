@@ -18,12 +18,14 @@ TODAY = dt.datetime.now(JST).date()
 WEEK = "月火水木金土日"
 
 SITE = json.loads((ROOT / "data/site.json").read_text(encoding="utf-8"))
+import os
+THEME = os.environ.get("K2_THEME") or SITE.get("theme", "green")
 EVENTS = json.loads((ROOT / "data/events.json").read_text(encoding="utf-8"))["events"]
 L = SITE["links"]
 
 NAV = [
     ("/about/", "K2について"),
-    ("/events/", "イベント"),
+    ("/events/", "定例会・イベント"),
     ("/hands-on/", "ハンズオンコース"),
 ]
 
@@ -68,7 +70,7 @@ def layout(path, title, body, depth, description=None, current=None):
             f"gtag('js',new Date());gtag('config','{gid}');</script>"
         )
     return f"""<!doctype html>
-<html lang="ja">
+<html lang="ja" data-theme="{THEME}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -93,7 +95,7 @@ def layout(path, title, body, depth, description=None, current=None):
 <a class="skip" href="#main">本文へ移動</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="{rel('/', depth)}"><img class="brand-logo" src="{rel('/assets/img/mark-dark.png', depth)}" alt="K2" width="46" height="60"><span class="brand-sub">DENTISTRY</span></a>
+    <a class="brand" href="{rel('/', depth)}"><img class="brand-logo" src="{rel('/assets/img/mark-' + THEME + '.png', depth)}" alt="K2" width="46" height="60"><span class="brand-sub">DENTISTRY</span></a>
     <nav class="nav" aria-label="メインメニュー">{nav}<a class="btn btn-primary" href="{rel('/join/', depth)}">入会案内</a></nav>
   </div>
 </header>
@@ -169,48 +171,64 @@ def empty_events(depth):
 def page_home():
     path, d = "/", 0
     upcoming, _ = sort_events()
-    ev_html = event_items(upcoming[:3], d) if upcoming else empty_events(d)
+    ev_html = event_items(upcoming[:4], d) if upcoming else empty_events(d)
     news = "".join(
         f'<li><span class="news-date">{e(n["date"])}</span>'
         + (f'<a href="{rel(n["link"], d)}">{e(n["text"])}</a>' if n.get("link") else f"<span>{e(n['text'])}</span>")
         + "</li>"
         for n in SITE["news"]
     )
+    course_rows = ""
+    for date, theme, teachers, tag in COURSE_2027:
+        dd = dt.date.fromisoformat(date)
+        who = "・".join(n + " 先生" for n, _ in teachers)
+        course_rows += (
+            f'<li><span class="cm-date">{dd.month}/{dd.day}<small style="font-family:var(--sans);font-weight:400;font-size:12px;color:var(--muted)">（{WEEK[dd.weekday()]}）</small></span>'
+            f'<span class="cm-theme">{e(theme)}</span><span class="cm-who">{e(who)}</span></li>'
+        )
+    fee_line = "　".join(f"{k} {v}" for k, v in COURSE_FEES_2027)
     body = f"""
-<section class="hero">
-  <div class="wrap split">
-    <div class="stack">
-      <p class="eyebrow">歯科スタディグループ K2</p>
-      <h1>審美と機能を<br>学ぶ。</h1>
-      <p class="lead">桑田正博先生の咬合理論と修復治療のテクニック、そして北原信也先生の審美。1本の歯から全顎治療まで、あらゆる歯科臨床を同一のコンセプトで学ぶスタディグループです。</p>
-      <div class="btn-row" style="padding-top:8px">
-        <a class="btn btn-primary" href="{rel('/join/', d)}">入会案内</a>
-        <a class="btn btn-outline" href="{rel('/events/', d)}">イベントを見る</a>
-      </div>
-    </div>
-    <figure class="hero-figure">
-      <img src="{rel('/assets/img/hero.jpg', d)}" alt="名誉顧問 桑田正博先生と主宰 北原信也先生" width="1280" height="720">
-      <figcaption>機能性と審美性が正しく融合した歯科医療 ― 仕事も勉強も遊びも、適切なバランスで。</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="section-white" aria-label="K2の概要">
-  <div class="wrap stats">
-    <div><div class="stat-num">2017<small>年</small></div><div class="stat-label">K.I.M-Tokyo と K-ing が統合し発足</div></div>
-    <div><div class="stat-num">約70<small>名</small></div><div class="stat-label">の歯科医師が在籍</div></div>
-    <div><div class="stat-num">年5<small>回</small></div><div class="stat-label">症例発表会を開催</div></div>
-    <div><div class="stat-num">年6<small>回</small></div><div class="stat-label">ハンズオン年間コース</div></div>
-  </div>
-</section>
-
-<section class="section">
+<section class="hero-logo">
   <div class="wrap">
-    <div class="section-head" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:16px">
-      <div><p class="eyebrow">EVENTS</p><h2 class="section-title">今後のイベント</h2></div>
-      <a class="more" href="{rel('/events/', d)}">すべてのイベント →</a>
+    <img src="{rel('/assets/img/logo-' + THEME + '.png', d)}" alt="K2 DENTISTRY since 2017" width="243" height="240">
+    <h1>審美と機能を学ぶ</h1>
+    <hr class="rule-gold">
+    <p class="lead">桑田正博先生の咬合理論と修復治療のテクニック、そして北原信也先生の審美。1本の歯から全顎治療まで、同一のコンセプトで学ぶ歯科スタディグループです。</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="{rel('/join/', d)}">入会案内</a>
+      <a class="btn btn-outline" href="{rel('/about/', d)}">K2について</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="block-head"><div><p class="eyebrow">NEWS</p><h2 class="section-title">お知らせ</h2></div></div>
+    <ul class="news-list">{news}</ul>
+  </div>
+</section>
+
+<section class="section-tight section-white">
+  <div class="wrap">
+    <div class="block-head">
+      <div><p class="eyebrow">MEETINGS &amp; EVENTS</p><h2 class="section-title">定例会・イベントの予定</h2></div>
+      <a class="more" href="{rel('/events/', d)}">すべての予定 →</a>
     </div>
     {ev_html}
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="block-head">
+      <div><p class="eyebrow">HANDS-ON COURSE</p><h2 class="section-title">ハンズオンコース 2027　受講生募集</h2></div>
+      <a class="more" href="{rel('/hands-on/', d)}">コースの詳細 →</a>
+    </div>
+    <ul class="course-mini">{course_rows}</ul>
+    <div class="course-foot">
+      <p>全6回・日曜開催　受講料（税込）{e(fee_line)}　※毎月払い可</p>
+      <a class="btn btn-primary" href="{e(L['handson_form'])}" target="_blank" rel="noopener">コースに申し込む</a>
+    </div>
   </div>
 </section>
 
@@ -219,38 +237,12 @@ def page_home():
     <div><p class="eyebrow">ABOUT</p><h2 class="section-title">先人の “Roots” を学び、<br>次の時代へつなぐ。</h2></div>
     <div class="stack" style="color:var(--ink-2)">
       <p>K2は、K.I.M（Kuwata Institute Millennium）-Tokyo と K-ing（Kitahara Academy）が統合したスタディグループです。K.I.Mの目的「桑田先生の咬合理論を学び、臨床で実践し、世界に普及すること」と、K-ingの精神「よく学び、よく遊ぶ」が融合した、アットホームでありながら本質的な勉強ができる場です。</p>
-      <div class="mission-grid">
-        <div class="card"><p class="card-label">MISSION 01</p><p class="card-title">桑田理論を日本から世界に発信していく</p></div>
-        <div class="card"><p class="card-label">MISSION 02</p><p class="card-title">桑田イズムを継承し啓蒙する</p></div>
-      </div>
       <a class="more" href="{rel('/about/', d)}">K2について詳しく →</a>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">PROGRAM</p><h2 class="section-title">学びのプログラム</h2></div>
-    <div class="program-grid">
-      <div class="program">
-        <p class="meta">会員向け</p>
-        <h3>例会・講義・講演</h3>
-        <p>東京・八重洲で年5回ほど、例会（症例発表）や講義、外部講師の講演会を開いています（Web同時開催）。夏には軽井沢でサマーセミナーと懇親会、年末には忘年会があります。</p>
-        <div class="tags"><span class="tag">症例発表会 年5回</span><span class="tag">外部講師講演会</span><span class="tag">軽井沢サマーセミナー</span></div>
-        <a class="more" href="{rel('/events/', d)}">イベント一覧を見る →</a>
-      </div>
-      <div class="program">
-        <p class="meta">会員・一般どちらも受講可</p>
-        <h3>K2 ハンズオンコース</h3>
-        <p>桑田正博先生の「クワタカレッジ」の流れを汲むワンデーハンズオン。F.D.O理論をはじめとする基礎知識と、実習によるスキルアップを1年で体系的に学びます。2027年は全6回で開講します。</p>
-        <div class="tags"><span class="tag">2027年 全6回・日曜開催</span><span class="tag">少人数制</span><span class="tag">毎月払い可</span></div>
-        <a class="more" href="{rel('/hands-on/', d)}">2027 年間コースを見る →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-white" aria-label="受講者の声">
+<section class="section" aria-label="受講者の声">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">VOICE</p><h2 class="section-title">受講者の声</h2></div>
     <div class="voice-grid">
@@ -259,13 +251,6 @@ def page_home():
       <figure class="voice"><blockquote>少人数制で、とても丁寧に講義実習を進めて下さり、各受講生に理解できるように教えて下さるセミナーです。</blockquote><figcaption>卒後20年以上・男性歯科医師</figcaption></figure>
       <figure class="voice"><blockquote>クラウン1本から実践できるので、卒後間もないDrから、咬合に悩んでいるDrまで幅広くおすすめしたいです。</blockquote><figcaption>卒後10〜20年・男性歯科医師</figcaption></figure>
     </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap split">
-    <div><p class="eyebrow">NEWS</p><h2 class="section-title">お知らせ</h2></div>
-    <ul class="news-list">{news}</ul>
   </div>
 </section>
 
@@ -282,8 +267,8 @@ def cta(d):
       <p>歯科医師の方は入会案内を、ハンズオンコースは事務局の申込フォームをご覧ください。</p>
     </div>
     <div class="btn-row">
-      <a class="btn btn-light" href="{rel('/join/', d)}">入会案内</a>
-      <a class="btn btn-ghost-light" href="{rel('/hands-on/', d)}">ハンズオンコース</a>
+      <a class="btn btn-primary" href="{rel('/join/', d)}">入会案内</a>
+      <a class="btn btn-outline" href="{rel('/hands-on/', d)}">ハンズオンコース</a>
     </div>
   </div>
 </section>"""
@@ -365,7 +350,7 @@ def page_events():
     if past:
         past_html = f'<div style="margin-top:64px"><h2 class="section-title" style="margin-bottom:24px">過去の開催</h2>{event_items(past, d, past=True)}</div>'
     body = page_head(
-        "イベント",
+        "定例会・イベント",
         "定例会（症例発表会）、講演会、サマーセミナー、懇親会などのご案内です。コデンタルスタッフの方も定例会に参加できます。",
         "EVENTS", d,
     ) + f"""
@@ -385,7 +370,7 @@ def page_events():
 </section>
 {cta(d)}
 """
-    write(path, layout(path, "イベント", body, d, current="/events/"))
+    write(path, layout(path, "定例会・イベント", body, d, current="/events/"))
 
 
 def page_event(x):

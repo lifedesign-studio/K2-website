@@ -4,6 +4,7 @@
   "url": "https://site.k2dent.com",
   "description": "桑田正博先生の咬合理論と北原信也先生の審美を、1本の歯から全顎治療まで同一コンセプトで学ぶ歯科スタディグループです。",
   "copyright_year": 2026,
+  "theme": "gold",
   "ga4_id": "",
   "links": {
     "join_form": "https://docs.google.com/forms/d/e/1FAIpQLSfJv-cnjANgtKxT-CxiEQA9wPWgG34BYhqgn6WNb7238K3TfA/viewform",
@@ -13,8 +14,19 @@
     "calendar_page": "https://www.google.com/calendar/embed?color=%23ac725e&src=tum5mm8di64j9160vha62h75m0@group.calendar.google.com"
   },
   "news": [
-    { "date": "2026.10", "text": "2027年の年間スケジュールを掲載しました。", "link": "/events/" },
-    { "date": "2026.10", "text": "2027 年間コース（全6回）の受講生を募集しています。", "link": "/hands-on/" },
-    { "date": "2026.10", "text": "ホームページをリニューアルしました。" }
+    {
+      "date": "2026.10",
+      "text": "2027年の年間スケジュールを掲載しました。",
+      "link": "/events/"
+    },
+    {
+      "date": "2026.10",
+      "text": "2027 年間コース（全6回）の受講生を募集しています。",
+      "link": "/hands-on/"
+    },
+    {
+      "date": "2026.10",
+      "text": "ホームページをリニューアルしました。"
+    }
   ]
 }

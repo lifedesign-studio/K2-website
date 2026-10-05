@@ -4,7 +4,7 @@
 
 ## 仕組み
 
-- `data/site.json` … サイト全体の設定（入会フォームなどのリンク、お知らせ、年度、GA4の測定ID）
+- `data/site.json` … サイト全体の設定（配色 `theme`：mono / gold / navy、入会フォームなどのリンク、お知らせ、年度、GA4の測定ID）
 - `data/events.json` … イベント（定例会・講演会・サマーセミナー・懇親会など）。1件ずつ追加する
 - `assets/` … CSS、画像、ファビコン、共有用画像（ogp.png）
 - `build.py` … 上のデータから `docs/` にサイトを書き出す（`python3 build.py`）
