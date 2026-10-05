@@ -1,0 +1,19 @@
+{
+  "name": "K2 dentistry",
+  "full_name": "歯科スタディグループ K2",
+  "url": "https://site.k2dent.com",
+  "description": "桑田正博先生の咬合理論と北原信也先生の審美を、1本の歯から全顎治療まで同一コンセプトで学ぶ歯科スタディグループです。",
+  "copyright_year": 2026,
+  "ga4_id": "",
+  "links": {
+    "join_form": "https://docs.google.com/forms/d/e/1FAIpQLSfJv-cnjANgtKxT-CxiEQA9wPWgG34BYhqgn6WNb7238K3TfA/viewform",
+    "fee_sheet": "https://drive.google.com/open?id=1RIaavF9_Vl1lyEqQYIBKlc5PYe01I4Gznw8hrprl724",
+    "handson_form": "https://forms.gle/Wr8zynj1LgTvQDHH6",
+    "calendar_embed": "https://www.google.com/calendar/embed?color=%23ac725e&mode=agenda&showCalendars=0&showPrint=0&showTz=0&showTitle=0&src=tum5mm8di64j9160vha62h75m0%40group.calendar.google.com&ctz=Asia%2FTokyo",
+    "calendar_page": "https://www.google.com/calendar/embed?color=%23ac725e&src=tum5mm8di64j9160vha62h75m0@group.calendar.google.com"
+  },
+  "news": [
+    { "date": "2026.10", "text": "ホームページをリニューアルしました。" },
+    { "date": "2026.4", "text": "第5期 K2ハンズオンコース（全5回）を開講しました。", "link": "/hands-on/" }
+  ]
+}
