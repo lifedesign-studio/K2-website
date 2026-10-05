@@ -17,7 +17,7 @@
 - 新しいイベント画像は `assets/events/` に置き、`image` で参照
 - 年度切替時：`site.json` の `copyright_year`、お知らせ、ハンズオンページ（`build.py` の `COURSE_*` と本文）を更新
 - ハンズオンコースは別会計・別事務局。申込・問い合わせは事務局フォーム（`links.handson_form`）へ
-- 独自ドメイン切替時は `site.json` の `custom_domain` に site.k2dent.com を入れて build（`docs/CNAME` が出力される）。切替前は空のまま
+- 独自ドメイン切替時は `site.json` の `custom_domain` にドメイン（現在 k2dent.com）を入れて build（`docs/CNAME` が出力される）。切替前は空のまま
 
 ## 月次保守（毎月）
 - リンク切れ、申込/支払いリンク、終了イベントの表示、年度・フッター、HTTPS を点検

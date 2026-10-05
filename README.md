@@ -1,6 +1,6 @@
 # K2 dentistry 公式サイト
 
-歯科スタディグループ K2 のホームページ（公開予定：https://site.k2dent.com ）。
+歯科スタディグループ K2 のホームページ（公開中：https://k2dent.com ）。
 
 ## 仕組み
 

@@ -1,13 +1,13 @@
 {
   "name": "K2 dentistry",
   "full_name": "歯科スタディグループ K2",
-  "url": "https://site.k2dent.com",
+  "url": "https://k2dent.com",
   "description": "桑田正博先生の咬合理論と北原信也先生の審美を、1本の歯から全顎治療まで同一コンセプトで学ぶ歯科スタディグループです。",
   "copyright_year": 2026,
   "theme": "gold",
   "ga4_id": "",
-  "_custom_domain_note": "独自ドメイン切替時に site.k2dent.com を入れる（docs/CNAME が出力される）。切替前は空のまま。",
-  "custom_domain": "site.k2dent.com",
+  "_custom_domain_note": "公開ドメイン。ここに入れたドメインで docs/CNAME が出力される（2026-10 に site.k2dent.com → k2dent.com へ移行）。",
+  "custom_domain": "k2dent.com",
   "course": {
     "_note": "status: recruiting（募集中：トップにバナー表示・申込ボタン表示）/ closed（受付終了：トップ非表示）",
     "status": "recruiting",
