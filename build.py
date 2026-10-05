@@ -116,9 +116,10 @@ def layout(path, title, body, depth, description=None, current=None, theme=None)
     <nav class="foot-nav" aria-label="フッターメニュー">
       <a href="{rel('/', depth)}">トップ</a>
       <a href="{rel('/about/', depth)}">K2について</a>
-      <a href="{rel('/events/', depth)}">イベント</a>
+      <a href="{rel('/events/', depth)}">定例会・イベント</a>
       <a href="{rel('/hands-on/', depth)}">ハンズオンコース</a>
       <a href="{rel('/join/', depth)}">入会案内</a>
+      {f'<a href="{e(L["instagram"])}" target="_blank" rel="noopener">Instagram</a>' if L.get("instagram") else ""}
     </nav>
   </div>
   <p class="copyright">&copy; {SITE['copyright_year']} K2 All Rights Reserved.</p>
@@ -188,6 +189,14 @@ def gallery_html(d):
         for ph in photos:
             cap = f'<figcaption>{e(ph.get("caption", ""))}</figcaption>' if ph.get("caption") else ""
             tiles += f'<figure class="g-item"><img src="{rel(ph["image"], d)}" alt="{e(ph.get("alt", ph.get("caption", "")))}" loading="lazy">{cap}</figure>'
+    elif L.get("instagram") and not WIREFRAME:
+        return f"""<section class="section-tight">
+  <div class="wrap insta-only">
+    <div><p class="eyebrow">GALLERY</p><h2 class="section-title">活動の様子</h2>
+    <p style="color:var(--ink-2);margin-top:12px">例会やセミナー、懇親会の様子を公式Instagramで発信しています。</p></div>
+    <a class="btn btn-outline" href="{e(L['instagram'])}" target="_blank" rel="noopener">Instagram　@k2__dental</a>
+  </div>
+</section>"""
     elif WIREFRAME:
         for label in ["例会の様子", "講義の様子", "サマーセミナー", "懇親会", "ハンズオン実習", "忘年会"]:
             tiles += f'<figure class="g-item g-blank"><span>写真：{label}</span></figure>'
