@@ -264,3 +264,40 @@ p { margin: 0; }
 .nav a.btn-primary, .nav a.btn-primary:hover { color: #fff; text-decoration: none; }
 .cta { background: var(--paper); color: var(--ink); border-top: 1px solid var(--line); }
 .cta p { color: var(--ink-2); }
+
+/* ---------- Typography matched to the logo ---------- */
+/* K2 / since 2017 = Cormorant Garamond, DENTISTRY = Montserrat */
+:root {
+  --display: "Cormorant Garamond", "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --label: "Montserrat", "Zen Kaku Gothic New", sans-serif;
+}
+h1, h2, h3, .section-title { font-family: var(--display); font-weight: 500; }
+.eyebrow { font-family: var(--label); font-size: 11px; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; }
+.brand-sub { font-family: var(--label); font-size: 11px; letter-spacing: 0.32em; }
+.event-date, .cm-date, .course-no, .stat-num, .fee-box .num, .timeline .year, .news-date {
+  font-family: var(--display); font-variant-numeric: lining-nums; font-weight: 500;
+}
+.event-date { font-size: 22px; }
+.event-date, .cm-date { letter-spacing: 0.02em; }
+.cm-date { font-size: 21px; }
+.news-date { font-size: 16px; }
+.course-no { font-size: 30px; }
+.hero-logo h1 { font-family: var(--serif); font-weight: 400; }
+.btn { font-family: var(--sans); letter-spacing: 0.06em; }
+.event-type, .course-tag, .tag { letter-spacing: 0.04em; }
+.voice blockquote { font-weight: 400; }
+
+/* ---------- Course = navy (theme C) inside the gold site ---------- */
+.theme-navy {
+  --ink:#1C2633; --ink-2:#3B4654; --muted:#5C6773; --line:#E3E5E8; --line-2:#E3E5E8;
+  --paper:#F6F7F8; --accent:#1C2633; --accent-dark:#0D141D; --accent-tint:#EDF0F4;
+  --gold:#86672F; --night:#16202C; --night-2:#1E2A38; --night-line:#34414F;
+  --night-ink:#F2F2EE; --night-muted:#B8C2CC; --night-gold:#D2B27A;
+}
+.section-night .course-mini li { border-color: var(--night-line); }
+.section-night .cm-date small, .section-night .cm-who, .section-night .course-foot p { color: var(--night-muted) !important; }
+.section-night .more { color: var(--night-gold); }
+.section-night .more:hover { color: #fff; }
+
+h1, h2, h3, .section-title { font-variant-numeric: lining-nums; }

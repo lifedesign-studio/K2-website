@@ -52,7 +52,8 @@ def sort_events():
     return upcoming, past
 
 
-def layout(path, title, body, depth, description=None, current=None):
+def layout(path, title, body, depth, description=None, current=None, theme=None):
+    theme = theme or THEME
     desc = description or SITE["description"]
     page_title = f"{title} | {SITE['name']}" if title else f"{SITE['name']} | {SITE['full_name']}"
     url = SITE["url"].rstrip("/") + path
@@ -70,7 +71,7 @@ def layout(path, title, body, depth, description=None, current=None):
             f"gtag('js',new Date());gtag('config','{gid}');</script>"
         )
     return f"""<!doctype html>
-<html lang="ja" data-theme="{THEME}">
+<html lang="ja" data-theme="{theme}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,7 +88,7 @@ def layout(path, title, body, depth, description=None, current=None):
 <link rel="icon" href="{rel('/assets/favicon.svg', depth)}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;500&family=Noto+Serif+JP:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="{rel('/assets/style.css', depth)}">
 {ga}
 </head>
@@ -95,7 +96,7 @@ def layout(path, title, body, depth, description=None, current=None):
 <a class="skip" href="#main">本文へ移動</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="{rel('/', depth)}"><img class="brand-logo" src="{rel('/assets/img/mark-' + THEME + '.png', depth)}" alt="K2" width="46" height="60"><span class="brand-sub">DENTISTRY</span></a>
+    <a class="brand" href="{rel('/', depth)}"><img class="brand-logo" src="{rel('/assets/img/mark-' + theme + '.png', depth)}" alt="K2" width="46" height="60"><span class="brand-sub">DENTISTRY</span></a>
     <nav class="nav" aria-label="メインメニュー">{nav}<a class="btn btn-primary" href="{rel('/join/', depth)}">入会案内</a></nav>
   </div>
 </header>
@@ -218,7 +219,7 @@ def page_home():
   </div>
 </section>
 
-<section class="section-tight">
+<section class="section-tight section-night theme-navy">
   <div class="wrap">
     <div class="block-head">
       <div><p class="eyebrow">HANDS-ON COURSE</p><h2 class="section-title">ハンズオンコース 2027　受講生募集</h2></div>
@@ -227,7 +228,7 @@ def page_home():
     <ul class="course-mini">{course_rows}</ul>
     <div class="course-foot">
       <p>全6回・日曜開催　受講料（税込）{e(fee_line)}　※毎月払い可</p>
-      <a class="btn btn-primary" href="{e(L['handson_form'])}" target="_blank" rel="noopener">コースに申し込む</a>
+      <a class="btn btn-light" href="{e(L['handson_form'])}" target="_blank" rel="noopener">コースに申し込む</a>
     </div>
   </div>
 </section>
@@ -329,9 +330,9 @@ def page_about():
     <div><p class="eyebrow">HISTORY</p><h2 class="section-title">沿革</h2></div>
     <div class="stack">
       <ul class="timeline">
-        <li><span class="year">2007</span><span>K.I.M（Kuwata Institute Millennium）-Tokyo 発足</span></li>
-        <li><span class="year">2008</span><span>K-ing（北原塾）発足</span></li>
-        <li><span class="year">2017</span><span>K-ing と K.I.M が統合し、K2 が発足</span></li>
+        <li><span class="year">2007</span><span>K.I.M（Kuwata Institute Millennium）-Tokyo 発足。歯科技工士を中心に桑田先生の咬合理論を学ぶ勉強会</span></li>
+        <li><span class="year">2008</span><span>K-ing（北原塾）発足。審美と補綴を中心に学ぶ勉強会</span></li>
+        <li><span class="year">2017</span><span>K-ing と K.I.M が統合し、K2 が発足。統合を機にハンズオンコースを新設</span></li>
       </ul>
       <p style="color:var(--muted)">会員数 約70名</p>
     </div>
@@ -547,7 +548,7 @@ def page_handson():
   </div>
 </section>
 """
-    write(path, layout(path, "ハンズオンコース", body, d, current="/hands-on/"))
+    write(path, layout(path, "ハンズオンコース", body, d, current="/hands-on/", theme="navy"))
 
 
 def page_404():
