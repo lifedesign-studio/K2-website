@@ -22,6 +22,8 @@ SITE = json.loads((ROOT / "data/site.json").read_text(encoding="utf-8"))
 THEME = os.environ.get("K2_THEME") or SITE.get("theme", "green")
 EVENTS = json.loads((ROOT / "data/events.json").read_text(encoding="utf-8"))["events"]
 GALLERY = json.loads((ROOT / "data/gallery.json").read_text(encoding="utf-8"))["photos"]
+HISTORY = json.loads((ROOT / "data/history.json").read_text(encoding="utf-8"))["years"]
+PEOPLE = json.loads((ROOT / "data/people.json").read_text(encoding="utf-8"))
 COURSE = SITE.get("course", {"status": "closed"})
 RECRUITING = COURSE.get("status") == "recruiting"
 WIREFRAME = os.environ.get("K2_WIREFRAME") == "1"  # 写真が未登録の枠を見本として表示（確認用）
@@ -29,6 +31,8 @@ L = SITE["links"]
 
 NAV = [
     ("/about/", "K2について"),
+    ("/history/", "K2の歩み"),
+    ("/people/", "講師紹介"),
     ("/events/", "定例会・イベント"),
     ("/hands-on/", "ハンズオンコース"),
 ]
@@ -116,6 +120,8 @@ def layout(path, title, body, depth, description=None, current=None, theme=None)
     <nav class="foot-nav" aria-label="フッターメニュー">
       <a href="{rel('/', depth)}">トップ</a>
       <a href="{rel('/about/', depth)}">K2について</a>
+      <a href="{rel('/history/', depth)}">K2の歩み</a>
+      <a href="{rel('/people/', depth)}">講師紹介</a>
       <a href="{rel('/events/', depth)}">定例会・イベント</a>
       <a href="{rel('/hands-on/', depth)}">ハンズオンコース</a>
       <a href="{rel('/join/', depth)}">入会案内</a>
@@ -258,7 +264,18 @@ def page_home():
       <figcaption><span class="p-role">DIRECTOR ／ 主宰</span><span class="p-name">北原信也</span><span class="p-roma">Nobuya Kitahara</span></figcaption>
     </figure>
   </div>
-  <p class="portraits-more"><a class="more" href="{rel('/about/', d)}">K2について →</a></p>
+</section>
+
+<section class="guide" aria-label="はじめての方へ">
+  <div class="wrap">
+    <p class="eyebrow" style="text-align:center">FOR NEWCOMERS</p>
+    <h2 class="section-title" style="text-align:center;margin-bottom:32px">はじめての方へ</h2>
+    <div class="guide-grid">
+      <a class="guide-card" href="{rel('/about/', d)}"><span class="g-en">About</span><span class="g-ja">K2について</span><span class="g-tx">理念と、K.I.M・K-ing から続くなりたち</span></a>
+      <a class="guide-card" href="{rel('/history/', d)}"><span class="g-en">History</span><span class="g-ja">K2の歩み</span><span class="g-tx">これまでの例会・サマーセミナーの記録</span></a>
+      <a class="guide-card" href="{rel('/people/', d)}"><span class="g-en">People</span><span class="g-ja">講師紹介</span><span class="g-tx">名誉顧問・主宰と講師陣のプロフィール</span></a>
+    </div>
+  </div>
 </section>
 
 <section class="section-tight section-white">
@@ -310,62 +327,149 @@ def page_head(title, lead, eyebrow, d, crumb=None):
     return f'<section class="page-head"><div class="wrap">{bc}<p class="eyebrow">{eyebrow}</p><h1>{e(title)}</h1>{lead_html}</div></section>'
 
 
+def photo_fig(ph, d, cls="h-photo"):
+    return f'<figure class="{cls}"><img src="{rel(ph["image"], d)}" alt="{e(ph.get("caption", ""))}" loading="lazy" width="960" height="720"><figcaption>{e(ph.get("caption", ""))}</figcaption></figure>'
+
+
 def page_about():
     path, d = "/about/", 1
-    body = page_head("K2について", "審美と機能の融合を、歯科治療におけるグローバルな視点で学ぶスタディグループです。", "ABOUT", d) + f"""
+    lead = PEOPLE["leaders"]
+    leader_html = ""
+    for p in lead:
+        leader_html += f"""<div class="leader">
+      <img src="{rel(p['photo'], d)}" alt="{e(p['name'])}先生" width="448" height="560" loading="lazy">
+      <div class="stack"><p class="p-role">{e(p['role'])}</p><h3 class="leader-name">{e(p['name'])}<span class="p-roma">{e(p['roma'])}</span></h3>
+      <p style="color:var(--ink-2)">{e(p['bio'][0])}</p><a class="more" href="{rel('/people/', d)}#{e(p['roma'].split()[-1].lower())}">プロフィールを見る →</a></div></div>"""
+    story = [
+        ("2007", "K.I.M-Tokyo 発足", "歯科技工士を中心に、桑田正博先生の咬合理論を学ぶ勉強会として始まりました。", None),
+        ("2008", "K-ing（北原塾）発足", "北原信也先生のもとで、審美と補綴を中心に学ぶ勉強会が生まれました。", {"image": "/assets/history/2013-king-summer.jpg", "caption": "2013年 K-ing サマーセミナー"}),
+        ("2017", "統合し K2 が発足", "K.I.M と K-ing が一つになり、技工の視点と審美・補綴を同じコンセプトで学ぶ場になりました。統合を機に、ハンズオンコースを新設しました。", {"image": "/assets/history/2020-kim-sokai-group.jpg", "caption": "2020年 KIM総会"}),
+        ("いま", "例会・サマーセミナー・コース", "東京・八重洲での例会、毎年8月末の軽井沢サマーセミナー、年間のハンズオンコースを軸に、学生から50代まで幅広い歯科医師とコデンタルスタッフが学んでいます。", {"image": "/assets/history/2026-summer-group.jpg", "caption": "2026年 サマーセミナー"}),
+    ]
+    story_html = ""
+    for yr, ttl, txt, ph in story:
+        fig = photo_fig(ph, d) if ph else ""
+        story_html += f'<li class="story-item"><div class="story-year">{yr}</div><div class="stack"><h3>{e(ttl)}</h3><p>{e(txt)}</p>{fig}</div></li>'
+    body = page_head("K2について", "機能性と審美性が正しく融合した歯科医療を、同じコンセプトで学ぶスタディグループです。", "ABOUT", d) + f"""
 <section class="section section-white">
   <div class="wrap split">
-    <div><h2 class="section-title">初めての方へ</h2></div>
+    <div><p class="eyebrow">CONCEPT</p><h2 class="section-title">機能性と審美性が<br>正しく融合した歯科医療</h2><p class="en-name">Academy of Tokyo-Function and Esthetic Dentistry</p></div>
     <div class="stack" style="color:var(--ink-2)">
-      <p>K2は、K.I.M（Kuwata Institute Millennium）-Tokyo と K-ing（Kitahara Academy）が統合したスタディグループです。桑田正博先生は名誉顧問を務めていらっしゃいました。</p>
-      <p>K.I.Mの目的「桑田先生の咬合理論を学び、臨床で実践し、世界に普及すること」と、K-ingの精神「よく学び、よく遊ぶ」が融合した、アットホームでありながら本質的な勉強ができるセミナーです。</p>
-      <p>私たちは、人々の健康に寄与するために歯科という分野の “Roots” を伸ばしていくことを使命と捉え、それは先人たちの築いてきた “Roots” を学び、時代につなげていくことだと考えています。</p>
-      <p>桑田先生の教えは「無理なく・無駄なく・難しくなく」をモットーとした修復治療のベースになるもので、セミナーはそのベースを踏まえて日常臨床にすぐに活かせる内容となっています。</p>
+      <p>K2は、K.I.M（Kuwata Institute Millennium）-Tokyo と K-ing（Kitahara Academy）が統合したスタディグループです。K.I.Mの目的「桑田先生の咬合理論を学び、臨床で実践し、世界に普及すること」と、K-ingの精神「よく学び、よく遊ぶ」が融合した、アットホームでありながら本質的な勉強ができる場です。</p>
+      <p>私たちは、人々の健康に寄与するために歯科という分野の “Roots” を伸ばしていくことを使命と捉え、それは先人たちの築いてきた “Roots” を学び、次の時代につなげていくことだと考えています。</p>
+      <p>桑田先生の教えは「無理なく・無駄なく・難しくなく」をモットーとした修復治療のベースになるもので、セミナーはそのベースを踏まえて日常臨床にすぐに活かせる内容となっています。仕事も、勉強も、遊びも、適切なバランスで。</p>
+      <div class="mission-grid">
+        <div class="card"><p class="card-label">MISSION 01</p><p class="card-title">桑田理論を日本から世界に発信していく</p></div>
+        <div class="card"><p class="card-label">MISSION 02</p><p class="card-title">桑田イズムを継承し啓蒙する</p></div>
+      </div>
     </div>
   </div>
 </section>
 <section class="section">
   <div class="wrap">
-    <figure class="hero-figure" style="margin:0 0 48px"><img src="{rel('/assets/img/hero.jpg', d)}" alt="名誉顧問 桑田正博先生と主宰 北原信也先生" width="1280" height="720"></figure>
-    <div class="split">
-      <div class="stack"><p class="eyebrow">HONORARY ADVISER</p><h2 class="section-title">桑田正博 先生</h2>
-        <p style="color:var(--ink-2)">歯科技工士。ボストン大学客員教授。PFMクラウン（金属焼付ポーセレン：通称メタルボンド）の共同開発者であり、アメリカで100年以上続く Academy of Prosthodontics（アメリカ歯科補綴学会）の名誉会員。世界中に5,000人を超える教え子を持ちます。K2の名誉顧問を務めていらっしゃいました。</p></div>
-      <div class="stack"><p class="eyebrow">DIRECTOR</p><h2 class="section-title">北原信也 先生</h2>
-        <p style="color:var(--ink-2)">K2の主宰。アメリカの学会や日本においても著名な臨床家として、審美と機能を学ぶ場をつくっています。ハンズオンコースのコースディレクターも務めます。</p></div>
-    </div>
+    <div class="section-head"><p class="eyebrow">LEADERS</p><h2 class="section-title">名誉顧問と主宰</h2></div>
+    <div class="leaders">{leader_html}</div>
   </div>
 </section>
 <section class="section section-white">
-  <div class="wrap split">
-    <div><p class="eyebrow">CONCEPT</p><h2 class="section-title">機能性と審美性が<br>正しく融合した歯科医療</h2></div>
-    <div class="stack" style="color:var(--ink-2)"><p>仕事も、勉強も、遊びも、適切なバランスで。K.I.Mの「学び、実践し、世界に普及する」と、K-ingの「よく学び、よく遊ぶ」を受け継いでいます。</p></div>
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">STORY</p><h2 class="section-title">K2のなりたち</h2></div>
+    <ol class="story">{story_html}</ol>
+    <p style="margin-top:40px"><a class="btn btn-outline" href="{rel('/history/', d)}">年ごとの記録「K2の歩み」を見る</a></p>
   </div>
 </section>
 <section class="section">
-  <div class="wrap split">
-    <div><p class="eyebrow">MISSION</p><h2 class="section-title">私たちの存在意義</h2></div>
-    <div class="mission-grid">
-      <div class="card"><p class="card-label">MISSION 01</p><p class="card-title">桑田理論を日本から世界に発信していく</p></div>
-      <div class="card"><p class="card-label">MISSION 02</p><p class="card-title">桑田イズムを継承し啓蒙する</p></div>
-    </div>
-  </div>
-</section>
-<section class="section section-white">
-  <div class="wrap split">
-    <div><p class="eyebrow">HISTORY</p><h2 class="section-title">沿革</h2></div>
-    <div class="stack">
-      <ul class="timeline">
-        <li><span class="year">2007</span><span>K.I.M（Kuwata Institute Millennium）-Tokyo 発足。歯科技工士を中心に桑田先生の咬合理論を学ぶ勉強会</span></li>
-        <li><span class="year">2008</span><span>K-ing（北原塾）発足。審美と補綴を中心に学ぶ勉強会</span></li>
-        <li><span class="year">2017</span><span>K-ing と K.I.M が統合し、K2 が発足。統合を機にハンズオンコースを新設</span></li>
-      </ul>
-      <p style="color:var(--muted)">会員数 約70名</p>
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">ACTIVITIES</p><h2 class="section-title">活動内容</h2></div>
+    <div class="program-grid">
+      <div class="program"><p class="meta">2か月に1回・東京駅八重洲</p><h3>例会</h3><p>ケースプレゼンテーション（症例発表）と特別講演。Webでの同時開催もあります。コデンタルスタッフも参加できます。</p><a class="more" href="{rel('/events/', d)}">今後の予定 →</a></div>
+      <div class="program"><p class="meta">毎年8月末・軽井沢</p><h3>サマーセミナー</h3><p>外部講師を招いた講演と、ご家族も参加できる懇親会。非会員の方も参加できます。</p><a class="more" href="{rel('/history/', d)}">これまでのサマーセミナー →</a></div>
+      <div class="program"><p class="meta">年間コース</p><h3>ハンズオンコース</h3><p>クワタカレッジの流れを汲む実習中心のコース。F.D.O理論をはじめ、修復治療の基礎を1年で体系的に学びます。</p><a class="more" href="{rel('/hands-on/', d)}">コースについて →</a></div>
     </div>
   </div>
 </section>
 {cta(d)}
 """
     write(path, layout(path, "K2について", body, d, current="/about/"))
+
+
+def speaker_line(sp):
+    out = []
+    for x in sp:
+        if "（" in x:
+            n, rest = x.split("（", 1)
+            out.append(f"{e(n)} 先生（{e(rest)}")
+        elif all(ord(c) < 128 or c == " " for c in x):
+            out.append(f"{e(x)}")
+        else:
+            out.append(f"{e(x)} 先生")
+    return "、".join(out)
+
+
+def page_history():
+    path, d = "/history/", 1
+    years_nav = "".join(f'<a href="#y{y["year"]}">{y["year"]}</a>' for y in HISTORY)
+    blocks = ""
+    for y in HISTORY:
+        rows = ""
+        for it in y["items"]:
+            sp = speaker_line(it["speakers"]) if it["speakers"] else ('<span class="tbd">講師［確認中］</span>' if it["type"] not in ("発足",) and not it["title"] else "")
+            title = f'<span class="h-title">{e(it["title"])}</span>' if it["title"] else ""
+            rows += f'<li><span class="h-date">{e(it["date"])}</span><span class="h-type">{e(it["type"])}</span><span class="h-body">{title}<span class="h-sp">{sp}</span></span></li>'
+        photos = "".join(photo_fig(ph, d) for ph in y.get("photos", []))
+        ph_html = f'<div class="h-photos">{photos}</div>' if photos else ""
+        blocks += f'<section class="h-year" id="y{y["year"]}"><h2 class="h-year-num">{y["year"]}</h2><div><ul class="h-list">{rows}</ul>{ph_html}</div></section>'
+    body = page_head("K2の歩み", "これまでの例会・サマーセミナー・総会の記録です。どなたが講演したかを年ごとに残しています。", "HISTORY", d) + f"""
+<section class="section" style="padding-top:8px">
+  <div class="wrap">
+    <nav class="year-nav" aria-label="年">{years_nav}</nav>
+    {blocks}
+    <p class="note">記録は公式Instagramと保管写真をもとにまとめています。抜けている年や講師名、訂正があれば事務局までお知らせください。</p>
+  </div>
+</section>
+"""
+    write(path, layout(path, "K2の歩み", body, d, description="K2の例会・サマーセミナー・総会の記録（年ごとの講師と写真）", current="/history/"))
+
+
+def page_people():
+    path, d = "/people/", 1
+    leaders = ""
+    for p in PEOPLE["leaders"]:
+        bio = "".join(f"<p>{e(b)}</p>" for b in p["bio"])
+        leaders += f"""<article class="profile" id="{e(p['roma'].split()[-1].lower())}">
+      <img src="{rel(p['photo'], d)}" alt="{e(p['name'])}先生" width="448" height="560" loading="lazy">
+      <div class="stack"><p class="p-role">{e(p['role'])}</p><h2 class="leader-name">{e(p['name'])}<span class="p-roma">{e(p['roma'])}</span></h2><div class="prose" style="color:var(--ink-2)">{bio}</div></div>
+    </article>"""
+    board = ""
+    if PEOPLE.get("board"):
+        cards = "".join(f'<div class="person">{teacher_img(b.get("photo"), b["name"], d)}<p class="person-name">{e(b["name"])} 先生</p><p class="person-meta">{e(b.get("role", ""))}</p></div>' for b in PEOPLE["board"])
+        board = f'<section class="section section-white"><div class="wrap"><div class="section-head"><p class="eyebrow">BOARD</p><h2 class="section-title">理事</h2></div><div class="people-grid">{cards}</div></div></section>'
+    lect = "".join(
+        f'<div class="person">{teacher_img(t.get("photo"), t["name"], d)}<p class="person-name">{e(t["name"])} 先生</p><p class="person-meta">{e("／".join(t.get("topics", [])))}</p></div>'
+        for t in PEOPLE["lecturers"]
+    )
+    body = page_head("講師紹介", "K2の名誉顧問・主宰と、ハンズオンコース・例会の講師陣です。", "PEOPLE", d) + f"""
+<section class="section section-white">
+  <div class="wrap profiles">{leaders}</div>
+</section>
+{board}
+<section class="section theme-navy section-night">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">LECTURERS</p><h2 class="section-title">講師陣</h2><p class="muted-night" style="margin-top:12px">桑田正博先生の咬合理論と修復治療のテクニックを継承し、実践する臨床家たちです。</p></div>
+    <div class="people-grid">{lect}</div>
+    <p style="margin-top:40px"><a class="btn btn-light" href="{rel('/hands-on/', d)}">ハンズオンコースを見る</a></p>
+  </div>
+</section>
+"""
+    write(path, layout(path, "講師紹介", body, d, current="/people/"))
+
+
+def teacher_img(photo, name, d):
+    if photo and photo.startswith("/"):
+        return f'<img class="person-photo" src="{rel(photo, d)}" alt="{e(name)}先生" loading="lazy">'
+    if photo:
+        return f'<img class="person-photo" src="{rel("/assets/img/teachers/" + photo + ".jpg", d)}" alt="{e(name)}先生" loading="lazy">'
+    return f'<span class="person-photo person-blank" aria-hidden="true">{e(name[0])}</span>'
 
 
 def page_events():
@@ -651,6 +755,8 @@ def main():
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
     page_home()
     page_about()
+    page_history()
+    page_people()
     page_events()
     for x in EVENTS:
         page_event(x)

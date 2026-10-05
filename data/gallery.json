@@ -2,40 +2,40 @@
   "_note": "トップのギャラリー。新しい写真を先頭に追加。image は /assets/gallery/ に置く。顔が写る写真は本人の了承を得たものだけ。",
   "photos": [
     {
-      "image": "/assets/gallery/2024-teireikai-group.jpg",
-      "caption": "2024年 定例会（橋爪先生ご登壇）"
+      "image": "/assets/gallery/2026-summer-group.jpg",
+      "caption": "2026年 サマーセミナー"
     },
     {
-      "image": "/assets/gallery/2025-01-reikai.jpg",
-      "caption": "2025年1月 例会"
+      "image": "/assets/gallery/2026-summer-lecture.jpg",
+      "caption": "2026年 サマーセミナー 講演"
     },
     {
-      "image": "/assets/gallery/2024-handson.jpg",
-      "caption": "2024年 ハンズオンコース"
+      "image": "/assets/gallery/2026-summer-party.jpg",
+      "caption": "2026年 サマーセミナー 懇親会"
     },
     {
-      "image": "/assets/gallery/konshinkai.jpg",
-      "caption": "例会のあとの懇親会"
+      "image": "/assets/gallery/2026-summer-party2.jpg",
+      "caption": "2026年 サマーセミナー 懇親会"
     },
     {
-      "image": "/assets/gallery/2024-summer.jpg",
-      "caption": "2024年 サマーセミナー"
+      "image": "/assets/gallery/2026-06-meeting-group.jpg",
+      "caption": "2026年6月 例会"
     },
     {
-      "image": "/assets/gallery/2020-kim-sokai.jpg",
-      "caption": "2020年 KIM総会"
+      "image": "/assets/gallery/2026-06-meeting-hall.jpg",
+      "caption": "2026年6月 例会"
     },
     {
-      "image": "/assets/gallery/2019-teireikai.jpg",
-      "caption": "2019年 定例会"
+      "image": "/assets/gallery/2026-06-meeting-presenters.jpg",
+      "caption": "2026年6月 例会"
     },
     {
-      "image": "/assets/gallery/2018-reikai.jpg",
-      "caption": "2018年 例会"
+      "image": "/assets/gallery/2026-06-meeting-discussion.jpg",
+      "caption": "2026年6月 例会"
     },
     {
-      "image": "/assets/gallery/2013-king.jpg",
-      "caption": "2013年 K-ing サマーセミナー"
+      "image": "/assets/gallery/2026-06-meeting-speaker.jpg",
+      "caption": "2026年6月 例会"
     }
   ]
 }
