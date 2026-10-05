@@ -301,3 +301,26 @@ h1, h2, h3, .section-title { font-family: var(--display); font-weight: 500; }
 .section-night .more:hover { color: #fff; }
 
 h1, h2, h3, .section-title { font-variant-numeric: lining-nums; }
+
+/* ---------- Top: portraits, course banner, gallery ---------- */
+.hero-logo { border-bottom: 0; padding-bottom: 56px; }
+.portraits { padding: 0 0 80px; border-bottom: 1px solid var(--line); }
+.portraits .wrap { display: grid; grid-template-columns: repeat(2, minmax(0, 360px)); justify-content: center; gap: 40px; }
+.portrait { margin: 0; }
+.portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--paper); }
+.portrait figcaption { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 18px; text-align: center; }
+.p-role { font-family: var(--label); font-size: 10px; letter-spacing: 0.28em; color: var(--gold); }
+.p-name { font-family: var(--serif); font-size: 22px; letter-spacing: 0.3em; margin-top: 6px; }
+.p-roma { font-family: var(--display); font-style: italic; font-size: 16px; color: var(--muted); }
+.portraits-more { text-align: center; margin-top: 28px; }
+@media (max-width: 640px) { .portraits .wrap { gap: 16px; } .p-name { font-size: 17px; letter-spacing: 0.15em; } .p-role { font-size: 9px; letter-spacing: 0.16em; } }
+.course-banner { background: var(--night); color: var(--night-ink); }
+.course-banner .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; padding-top: 40px; padding-bottom: 40px; }
+.course-banner .eyebrow { color: var(--night-gold); margin-bottom: 6px; }
+.cb-title { font-family: var(--serif); font-size: clamp(18px, 2.2vw, 22px); letter-spacing: 0.08em; }
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.g-item { margin: 0; position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: var(--paper); }
+.g-item img { width: 100%; height: 100%; object-fit: cover; }
+.g-item figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 12px; font-size: 12px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,0.55)); }
+.g-blank { display: flex; align-items: center; justify-content: center; border: 1px dashed #C9C2B5; color: var(--muted); font-size: 13px; }
+@media (max-width: 640px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }

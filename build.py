@@ -6,6 +6,7 @@ data/*.json と assets/ から docs/ に静的サイトを書き出す。
 GitHub Pages は main ブランチの /docs フォルダを公開する設定にする。
 """
 import datetime as dt
+import os
 import html
 import json
 import shutil
@@ -18,9 +19,12 @@ TODAY = dt.datetime.now(JST).date()
 WEEK = "月火水木金土日"
 
 SITE = json.loads((ROOT / "data/site.json").read_text(encoding="utf-8"))
-import os
 THEME = os.environ.get("K2_THEME") or SITE.get("theme", "green")
 EVENTS = json.loads((ROOT / "data/events.json").read_text(encoding="utf-8"))["events"]
+GALLERY = json.loads((ROOT / "data/gallery.json").read_text(encoding="utf-8"))["photos"]
+COURSE = SITE.get("course", {"status": "closed"})
+RECRUITING = COURSE.get("status") == "recruiting"
+WIREFRAME = os.environ.get("K2_WIREFRAME") == "1"  # 写真が未登録の枠を見本として表示（確認用）
 L = SITE["links"]
 
 NAV = [
@@ -169,6 +173,51 @@ def empty_events(depth):
 
 # ---------------------------------------------------------------- pages
 
+VOICES = [
+    ("咬合をかなりシンプルに考えられるようになり、とても臨床が楽しくなった。", "卒後10〜20年・男性歯科医師"),
+    ("咬合は敷居が高いと感じる方にも、明確な理論と実際の臨床とを強く結びつけた内容でわかりやすいと思います。", "卒後20年以上・女性歯科医師"),
+    ("少人数制で、とても丁寧に講義実習を進めて下さり、各受講生に理解できるように教えて下さるセミナーです。", "卒後20年以上・男性歯科医師"),
+    ("クラウン1本から実践できるので、卒後間もないDrから、咬合に悩んでいるDrまで幅広くおすすめしたいです。", "卒後10〜20年・男性歯科医師"),
+]
+
+
+def gallery_html(d):
+    photos = GALLERY[:9]
+    tiles = ""
+    if photos:
+        for ph in photos:
+            cap = f'<figcaption>{e(ph.get("caption", ""))}</figcaption>' if ph.get("caption") else ""
+            tiles += f'<figure class="g-item"><img src="{rel(ph["image"], d)}" alt="{e(ph.get("alt", ph.get("caption", "")))}" loading="lazy">{cap}</figure>'
+    elif WIREFRAME:
+        for label in ["例会の様子", "講義の様子", "サマーセミナー", "懇親会", "ハンズオン実習", "忘年会"]:
+            tiles += f'<figure class="g-item g-blank"><span>写真：{label}</span></figure>'
+    else:
+        return ""
+    insta = ""
+    if L.get("instagram"):
+        insta = f'<a class="more" href="{e(L["instagram"])}" target="_blank" rel="noopener">Instagramでもっと見る →</a>'
+    return f"""<section class="section-tight">
+  <div class="wrap">
+    <div class="block-head"><div><p class="eyebrow">GALLERY</p><h2 class="section-title">活動の様子</h2></div>{insta}</div>
+    <div class="gallery">{tiles}</div>
+  </div>
+</section>"""
+
+
+def course_banner(d):
+    if not RECRUITING:
+        return ""
+    return f"""<section class="course-banner theme-navy">
+  <div class="wrap">
+    <div><p class="eyebrow">HANDS-ON COURSE</p><p class="cb-title">{e(COURSE.get('title', 'ハンズオンコース'))}　受講生募集中</p></div>
+    <div class="btn-row">
+      <a class="btn btn-light" href="{e(L['handson_form'])}" target="_blank" rel="noopener">申し込む</a>
+      <a class="btn btn-ghost-light" href="{rel('/hands-on/', d)}">コースの詳細</a>
+    </div>
+  </div>
+</section>"""
+
+
 def page_home():
     path, d = "/", 0
     upcoming, _ = sort_events()
@@ -179,15 +228,6 @@ def page_home():
         + "</li>"
         for n in SITE["news"]
     )
-    course_rows = ""
-    for date, theme, teachers, tag in COURSE_2027:
-        dd = dt.date.fromisoformat(date)
-        who = "・".join(n + " 先生" for n, _ in teachers)
-        course_rows += (
-            f'<li><span class="cm-date">{dd.month}/{dd.day}<small style="font-family:var(--sans);font-weight:400;font-size:12px;color:var(--muted)">（{WEEK[dd.weekday()]}）</small></span>'
-            f'<span class="cm-theme">{e(theme)}</span><span class="cm-who">{e(who)}</span></li>'
-        )
-    fee_line = "　".join(f"{k} {v}" for k, v in COURSE_FEES_2027)
     body = f"""
 <section class="hero-logo">
   <div class="wrap">
@@ -195,21 +235,31 @@ def page_home():
     <h1>審美と機能を学ぶ</h1>
     <hr class="rule-gold">
     <p class="lead">桑田正博先生の咬合理論と修復治療のテクニック、そして北原信也先生の審美。1本の歯から全顎治療まで、同一のコンセプトで学ぶ歯科スタディグループです。</p>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="{rel('/join/', d)}">入会案内</a>
-      <a class="btn btn-outline" href="{rel('/about/', d)}">K2について</a>
-    </div>
   </div>
 </section>
 
-<section class="section-tight">
+<section class="portraits" aria-label="名誉顧問と主宰">
+  <div class="wrap">
+    <figure class="portrait">
+      <img src="{rel('/assets/img/portrait-kuwata.jpg', d)}" alt="桑田正博先生" width="448" height="560">
+      <figcaption><span class="p-role">HONORARY ADVISER ／ 名誉顧問</span><span class="p-name">桑田正博</span><span class="p-roma">Masahiro Kuwata</span></figcaption>
+    </figure>
+    <figure class="portrait">
+      <img src="{rel('/assets/img/portrait-kitahara.jpg', d)}" alt="北原信也先生" width="448" height="560">
+      <figcaption><span class="p-role">DIRECTOR ／ 主宰</span><span class="p-name">北原信也</span><span class="p-roma">Nobuya Kitahara</span></figcaption>
+    </figure>
+  </div>
+  <p class="portraits-more"><a class="more" href="{rel('/about/', d)}">K2について →</a></p>
+</section>
+
+<section class="section-tight section-white">
   <div class="wrap">
     <div class="block-head"><div><p class="eyebrow">NEWS</p><h2 class="section-title">お知らせ</h2></div></div>
     <ul class="news-list">{news}</ul>
   </div>
 </section>
 
-<section class="section-tight section-white">
+<section class="section-tight">
   <div class="wrap">
     <div class="block-head">
       <div><p class="eyebrow">MEETINGS &amp; EVENTS</p><h2 class="section-title">定例会・イベントの予定</h2></div>
@@ -219,43 +269,9 @@ def page_home():
   </div>
 </section>
 
-<section class="section-tight section-night theme-navy">
-  <div class="wrap">
-    <div class="block-head">
-      <div><p class="eyebrow">HANDS-ON COURSE</p><h2 class="section-title">ハンズオンコース 2027　受講生募集</h2></div>
-      <a class="more" href="{rel('/hands-on/', d)}">コースの詳細 →</a>
-    </div>
-    <ul class="course-mini">{course_rows}</ul>
-    <div class="course-foot">
-      <p>全6回・日曜開催　受講料（税込）{e(fee_line)}　※毎月払い可</p>
-      <a class="btn btn-light" href="{e(L['handson_form'])}" target="_blank" rel="noopener">コースに申し込む</a>
-    </div>
-  </div>
-</section>
+{course_banner(d)}
 
-<section class="section section-white" id="about">
-  <div class="wrap split">
-    <div><p class="eyebrow">ABOUT</p><h2 class="section-title">先人の “Roots” を学び、<br>次の時代へつなぐ。</h2></div>
-    <div class="stack" style="color:var(--ink-2)">
-      <p>K2は、K.I.M（Kuwata Institute Millennium）-Tokyo と K-ing（Kitahara Academy）が統合したスタディグループです。K.I.Mの目的「桑田先生の咬合理論を学び、臨床で実践し、世界に普及すること」と、K-ingの精神「よく学び、よく遊ぶ」が融合した、アットホームでありながら本質的な勉強ができる場です。</p>
-      <a class="more" href="{rel('/about/', d)}">K2について詳しく →</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-label="受講者の声">
-  <div class="wrap">
-    <div class="section-head"><p class="eyebrow">VOICE</p><h2 class="section-title">受講者の声</h2></div>
-    <div class="voice-grid">
-      <figure class="voice"><blockquote>咬合をかなりシンプルに考えられるようになり、とても臨床が楽しくなった。</blockquote><figcaption>卒後10〜20年・男性歯科医師</figcaption></figure>
-      <figure class="voice"><blockquote>咬合は敷居が高いと感じる方にも、明確な理論と実際の臨床とを強く結びつけた内容でわかりやすいと思います。</blockquote><figcaption>卒後20年以上・女性歯科医師</figcaption></figure>
-      <figure class="voice"><blockquote>少人数制で、とても丁寧に講義実習を進めて下さり、各受講生に理解できるように教えて下さるセミナーです。</blockquote><figcaption>卒後20年以上・男性歯科医師</figcaption></figure>
-      <figure class="voice"><blockquote>クラウン1本から実践できるので、卒後間もないDrから、咬合に悩んでいるDrまで幅広くおすすめしたいです。</blockquote><figcaption>卒後10〜20年・男性歯科医師</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-{cta(d)}
+{gallery_html(d)}
 """
     write(path, layout(path, None, body, d))
 
@@ -503,6 +519,13 @@ def page_handson():
             f'<div class="teachers">{"".join(teacher_html(n, ph, d) for n, ph in teachers)}</div></li>'
         )
     fees = "".join(f'<p>{e(k)} <span class="num">{e(v)}</span>（税込）</p>' for k, v in COURSE_FEES_2027)
+    if RECRUITING:
+        apply_bar = (f'<div class="cta-bar" style="margin-top:40px"><p>受講生を募集しています。お申し込み・お問い合わせは、コース事務局の申込フォームからお願いします。</p>'
+                     f'<a class="btn btn-light" href="{e(L["handson_form"])}" target="_blank" rel="noopener">申込フォーム</a></div>')
+    else:
+        apply_bar = f'<div class="cta-bar" style="margin-top:40px"><p>{e(COURSE.get("closed_message", "受付は終了しました。"))}</p></div>'
+    voices = "".join(f'<figure class="voice"><blockquote>{e(q)}</blockquote><figcaption>{e(c)}</figcaption></figure>' for q, c in VOICES)
+    status_word = "受講生募集" if RECRUITING else "（受付終了）"
     body = page_head(
         "K2 ハンズオンコース",
         "機能と審美の追求 ― 伝説のクワタカレッジを継承する総合的な臨床セミナー",
@@ -520,25 +543,28 @@ def page_handson():
 </section>
 <section class="section section-night">
   <div class="wrap">
-    <div class="section-head"><p class="eyebrow">2027 PROGRAM</p><h2 class="section-title">2027 年間コース　受講生募集</h2><p class="muted-night" style="margin-top:12px">咬合・補綴・審美を、深く学ぶ。全6回・日曜開催</p></div>
+    <div class="section-head"><p class="eyebrow">2027 PROGRAM</p><h2 class="section-title">2027 年間コース　{status_word}</h2><p class="muted-night" style="margin-top:12px">咬合・補綴・審美を、深く学ぶ。全6回・日曜開催</p></div>
     <ol class="course-list">{items}</ol>
     <div class="fee-grid" style="margin-top:40px">
       <div class="fee-box"><p class="label">受講料（全6回）</p>{fees}<p class="muted-night" style="font-size:14px">※ 毎月払いが可能です。</p></div>
       <div class="fee-box"><p class="label">時間・会場</p><p>決まり次第ご案内します。</p><p class="muted-night" style="font-size:14px">参考：2026年は各回 9:30〜16:00、TT Dental Labo 2F 研修室（東京都中央区新川 2-12-14）</p></div>
     </div>
-    <div class="cta-bar" style="margin-top:40px">
-      <p>お申し込み・お問い合わせは、コース事務局の申込フォームからお願いします。</p>
-      <a class="btn btn-light" href="{e(L['handson_form'])}" target="_blank" rel="noopener">申込フォーム</a>
-    </div>
+    {apply_bar}
   </div>
 </section>
-<section class="section">
+<section class="section"{'' if RECRUITING else ' hidden'}>
   <div class="wrap split">
     <div><p class="eyebrow">FLYER</p><h2 class="section-title">募集案内</h2><p class="lead" style="margin-top:16px">SNSやLINEでの紹介にもお使いください。</p></div>
     <img src="{rel('/assets/img/handson-2027.jpg', d)}" alt="K2 2027 年間コース 受講生募集の案内" width="1000" height="1000" style="border:1px solid var(--line)">
   </div>
 </section>
-<section class="section section-white">
+<section class="section section-white" aria-label="受講者の声">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">VOICE</p><h2 class="section-title">受講者の声</h2></div>
+    <div class="voice-grid">{voices}</div>
+  </div>
+</section>
+<section class="section">
   <div class="wrap split">
     <div><p class="eyebrow">MESSAGE</p><h2 class="section-title">コースディレクター<br>北原信也</h2></div>
     <div class="stack" style="color:var(--ink-2)">

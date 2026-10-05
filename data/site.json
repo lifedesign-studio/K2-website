@@ -6,12 +6,19 @@
   "copyright_year": 2026,
   "theme": "gold",
   "ga4_id": "",
+  "course": {
+    "_note": "status: recruiting（募集中：トップにバナー表示・申込ボタン表示）/ closed（受付終了：トップ非表示）",
+    "status": "recruiting",
+    "title": "2027 年間コース",
+    "closed_message": "2027 年間コースは定員に達したため、受付を終了しました。次回の募集は決まり次第お知らせします。"
+  },
   "links": {
     "join_form": "https://docs.google.com/forms/d/e/1FAIpQLSfJv-cnjANgtKxT-CxiEQA9wPWgG34BYhqgn6WNb7238K3TfA/viewform",
     "fee_sheet": "https://drive.google.com/open?id=1RIaavF9_Vl1lyEqQYIBKlc5PYe01I4Gznw8hrprl724",
     "handson_form": "https://forms.gle/Wr8zynj1LgTvQDHH6",
     "calendar_embed": "https://www.google.com/calendar/embed?color=%23ac725e&mode=agenda&showCalendars=0&showPrint=0&showTz=0&showTitle=0&src=tum5mm8di64j9160vha62h75m0%40group.calendar.google.com&ctz=Asia%2FTokyo",
-    "calendar_page": "https://www.google.com/calendar/embed?color=%23ac725e&src=tum5mm8di64j9160vha62h75m0@group.calendar.google.com"
+    "calendar_page": "https://www.google.com/calendar/embed?color=%23ac725e&src=tum5mm8di64j9160vha62h75m0@group.calendar.google.com",
+    "instagram": ""
   },
   "news": [
     {
