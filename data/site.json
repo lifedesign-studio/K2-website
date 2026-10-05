@@ -6,6 +6,8 @@
   "copyright_year": 2026,
   "theme": "gold",
   "ga4_id": "",
+  "_custom_domain_note": "独自ドメイン切替時に site.k2dent.com を入れる（docs/CNAME が出力される）。切替前は空のまま。",
+  "custom_domain": "",
   "course": {
     "_note": "status: recruiting（募集中：トップにバナー表示・申込ボタン表示）/ closed（受付終了：トップ非表示）",
     "status": "recruiting",

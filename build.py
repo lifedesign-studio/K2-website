@@ -760,6 +760,9 @@ def main():
     make_ogp()
     shutil.copytree(ROOT / "assets", OUT / "assets")
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
+    # 独自ドメイン：site.json の custom_domain が入っているときだけ docs/CNAME を出す
+    if SITE.get("custom_domain"):
+        (OUT / "CNAME").write_text(SITE["custom_domain"].strip() + "\n", encoding="utf-8")
     page_home()
     page_about()
     page_history()
