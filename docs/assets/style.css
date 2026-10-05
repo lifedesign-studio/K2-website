@@ -207,3 +207,17 @@ p { margin: 0; }
   .detail-table th { width: 6.5em; padding: 14px 12px; }
   .detail-table td { padding: 14px 12px; }
 }
+
+/* Logo, hero photo, lecturers */
+.brand { align-items: center; }
+.brand-logo { height: 40px; width: auto; }
+.foot-logo { height: 120px; width: auto; margin-bottom: 8px; }
+.hero-figure { margin: 0; }
+.hero-figure img { width: 100%; height: auto; border: 1px solid var(--line); background: #fff; }
+.hero-figure figcaption { font-family: var(--serif); font-size: 15px; color: var(--muted); margin-top: 14px; line-height: 1.8; }
+.teachers { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+.teacher { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: var(--night-muted); }
+.avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 1px solid var(--night-line); flex-shrink: 0; }
+.avatar-blank { display: inline-flex; align-items: center; justify-content: center; background: var(--night-2); color: var(--night-gold); font-family: var(--serif); font-size: 20px; }
+.course-tag { display: inline-block; font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--night-gold); border: 1px solid var(--night-gold); padding: 1px 10px; margin-left: 12px; vertical-align: middle; }
+.course-list li { align-items: center; }

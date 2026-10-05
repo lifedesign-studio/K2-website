@@ -13,7 +13,8 @@
     "calendar_page": "https://www.google.com/calendar/embed?color=%23ac725e&src=tum5mm8di64j9160vha62h75m0@group.calendar.google.com"
   },
   "news": [
-    { "date": "2026.10", "text": "ホームページをリニューアルしました。" },
-    { "date": "2026.4", "text": "第5期 K2ハンズオンコース（全5回）を開講しました。", "link": "/hands-on/" }
+    { "date": "2026.10", "text": "2027年の年間スケジュールを掲載しました。", "link": "/events/" },
+    { "date": "2026.10", "text": "2027 年間コース（全6回）の受講生を募集しています。", "link": "/hands-on/" },
+    { "date": "2026.10", "text": "ホームページをリニューアルしました。" }
   ]
 }

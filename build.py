@@ -93,7 +93,7 @@ def layout(path, title, body, depth, description=None, current=None):
 <a class="skip" href="#main">本文へ移動</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="{rel('/', depth)}"><span class="brand-mark">K2</span><span class="brand-sub">DENTISTRY</span></a>
+    <a class="brand" href="{rel('/', depth)}"><img class="brand-logo" src="{rel('/assets/img/mark-dark.png', depth)}" alt="K2" width="46" height="60"><span class="brand-sub">DENTISTRY</span></a>
     <nav class="nav" aria-label="メインメニュー">{nav}<a class="btn btn-primary" href="{rel('/join/', depth)}">入会案内</a></nav>
   </div>
 </header>
@@ -103,7 +103,7 @@ def layout(path, title, body, depth, description=None, current=None):
 <footer class="site-footer">
   <div class="wrap">
     <div>
-      <div class="foot-brand">K2</div>
+      <img class="foot-logo" src="{rel('/assets/img/logo-light.png', depth)}" alt="K2 DENTISTRY since 2017" width="130" height="160">
       <p>{e(SITE['full_name'])}</p>
     </div>
     <nav class="foot-nav" aria-label="フッターメニュー">
@@ -188,19 +188,19 @@ def page_home():
         <a class="btn btn-outline" href="{rel('/events/', d)}">イベントを見る</a>
       </div>
     </div>
-    <div class="hero-panel" aria-hidden="true">
-      <div class="big">K2</div>
-      <p class="quote">無理なく・無駄なく・難しくなく<br><strong>よく学び、よく遊ぶ。</strong></p>
-    </div>
+    <figure class="hero-figure">
+      <img src="{rel('/assets/img/hero.jpg', d)}" alt="名誉顧問 桑田正博先生と主宰 北原信也先生" width="1280" height="720">
+      <figcaption>機能性と審美性が正しく融合した歯科医療 ― 仕事も勉強も遊びも、適切なバランスで。</figcaption>
+    </figure>
   </div>
 </section>
 
 <section class="section-white" aria-label="K2の概要">
   <div class="wrap stats">
-    <div><div class="stat-num">2018<small>年</small></div><div class="stat-label">K.I.M-Tokyo と K-ing が統合し発足</div></div>
+    <div><div class="stat-num">2017<small>年</small></div><div class="stat-label">K.I.M-Tokyo と K-ing が統合し発足</div></div>
     <div><div class="stat-num">約70<small>名</small></div><div class="stat-label">の歯科医師が在籍</div></div>
     <div><div class="stat-num">年5<small>回</small></div><div class="stat-label">症例発表会を開催</div></div>
-    <div><div class="stat-num">第5<small>期</small></div><div class="stat-label">ハンズオンコース開講</div></div>
+    <div><div class="stat-num">年6<small>回</small></div><div class="stat-label">ハンズオン年間コース</div></div>
   </div>
 </section>
 
@@ -234,17 +234,17 @@ def page_home():
     <div class="program-grid">
       <div class="program">
         <p class="meta">会員向け</p>
-        <h3>定例会・勉強会</h3>
-        <p>年5回の症例発表会と、外部講師を招いての講演会を開催。夏には軽井沢でサマーセミナーと懇親会を行い、主宰・北原信也先生によるアップデートセミナーも実施しています。</p>
+        <h3>例会・講義・講演</h3>
+        <p>東京・八重洲で年5回ほど、例会（症例発表）や講義、外部講師の講演会を開いています（Web同時開催）。夏には軽井沢でサマーセミナーと懇親会、年末には忘年会があります。</p>
         <div class="tags"><span class="tag">症例発表会 年5回</span><span class="tag">外部講師講演会</span><span class="tag">軽井沢サマーセミナー</span></div>
         <a class="more" href="{rel('/events/', d)}">イベント一覧を見る →</a>
       </div>
       <div class="program">
         <p class="meta">会員・一般どちらも受講可</p>
         <h3>K2 ハンズオンコース</h3>
-        <p>桑田正博先生の「クワタカレッジ」の流れを汲む、全5回のワンデーハンズオン。F.D.O理論をはじめとする基礎知識と、実習によるスキルアップを1年で体系的に学びます。特別講師による単回コースもあります。</p>
-        <div class="tags"><span class="tag">全5回・日曜開催</span><span class="tag">少人数制</span><span class="tag">単回受講可</span></div>
-        <a class="more" href="{rel('/hands-on/', d)}">コース内容を見る →</a>
+        <p>桑田正博先生の「クワタカレッジ」の流れを汲むワンデーハンズオン。F.D.O理論をはじめとする基礎知識と、実習によるスキルアップを1年で体系的に学びます。2027年は全6回で開講します。</p>
+        <div class="tags"><span class="tag">2027年 全6回・日曜開催</span><span class="tag">少人数制</span><span class="tag">毎月払い可</span></div>
+        <a class="more" href="{rel('/hands-on/', d)}">2027 年間コースを見る →</a>
       </div>
     </div>
   </div>
@@ -314,6 +314,23 @@ def page_about():
   </div>
 </section>
 <section class="section">
+  <div class="wrap">
+    <figure class="hero-figure" style="margin:0 0 48px"><img src="{rel('/assets/img/hero.jpg', d)}" alt="名誉顧問 桑田正博先生と主宰 北原信也先生" width="1280" height="720"></figure>
+    <div class="split">
+      <div class="stack"><p class="eyebrow">HONORARY ADVISER</p><h2 class="section-title">桑田正博 先生</h2>
+        <p style="color:var(--ink-2)">歯科技工士。ボストン大学客員教授。PFMクラウン（金属焼付ポーセレン：通称メタルボンド）の共同開発者であり、アメリカで100年以上続く Academy of Prosthodontics（アメリカ歯科補綴学会）の名誉会員。世界中に5,000人を超える教え子を持ちます。K2の名誉顧問を務めていらっしゃいました。</p></div>
+      <div class="stack"><p class="eyebrow">DIRECTOR</p><h2 class="section-title">北原信也 先生</h2>
+        <p style="color:var(--ink-2)">K2の主宰。アメリカの学会や日本においても著名な臨床家として、審美と機能を学ぶ場をつくっています。ハンズオンコースのコースディレクターも務めます。</p></div>
+    </div>
+  </div>
+</section>
+<section class="section section-white">
+  <div class="wrap split">
+    <div><p class="eyebrow">CONCEPT</p><h2 class="section-title">機能性と審美性が<br>正しく融合した歯科医療</h2></div>
+    <div class="stack" style="color:var(--ink-2)"><p>仕事も、勉強も、遊びも、適切なバランスで。K.I.Mの「学び、実践し、世界に普及する」と、K-ingの「よく学び、よく遊ぶ」を受け継いでいます。</p></div>
+  </div>
+</section>
+<section class="section">
   <div class="wrap split">
     <div><p class="eyebrow">MISSION</p><h2 class="section-title">私たちの存在意義</h2></div>
     <div class="mission-grid">
@@ -329,8 +346,7 @@ def page_about():
       <ul class="timeline">
         <li><span class="year">2007</span><span>K.I.M（Kuwata Institute Millennium）-Tokyo 発足</span></li>
         <li><span class="year">2008</span><span>K-ing（北原塾）発足</span></li>
-        <li><span class="year">2017</span><span>K-ing と K.I.M が統合</span></li>
-        <li><span class="year">2018</span><span>歯科スタディグループ K2 として発足</span></li>
+        <li><span class="year">2017</span><span>K-ing と K.I.M が統合し、K2 が発足</span></li>
       </ul>
       <p style="color:var(--muted)">会員数 約70名</p>
     </div>
@@ -469,22 +485,38 @@ def page_join():
     write(path, layout(path, "入会案内", body, d, current="/join/"))
 
 
-COURSE_2026 = [
-    ("01", "4月12日（日）", "咬合理論、咬合器の基礎", "茂野啓示"),
-    ("02", "5月17日（日）", "FDO理論に基づいた咬合調整", "園田晋平 / 菅義嗣 / 宮澤広人"),
-    ("03", "6月21日（日）", "臼歯の機能的な形態と接触方法", "遠山敏成 / 清水良介"),
-    ("04", "7月12日（日）", "前歯の審美形態と支台歯形成", "北原信也 / 上林健"),
-    ("05", "8月23日（日）", "全顎的なセットアップ方法", "高島浩二 / 篠原宏晨"),
+# 2027 年間コース（出典：2027年間コース受講生募集フライヤー）。写真は assets/img/teachers/
+COURSE_2027 = [
+    ("2027-04-04", "咬合理論と咬合器の基礎", [("茂野啓示", "shigeno")], None),
+    ("2027-05-16", "FDO理論に基づいた咬合調整", [("園田晋平", "sonoda")], None),
+    ("2027-06-13", "臼歯の機能的な形態と接触方法", [("遠山敏成", "toyama"), ("清水良介", "shimizu")], None),
+    ("2027-07-25", "前歯の審美形態と支台歯形成", [("北原信也", "kitahara"), ("上林健", "kambayashi")], "懇親会"),
+    ("2027-08-22", "全顎的なセットアップ方法", [("高島浩二", "takashima")], None),
+    ("2027-09-26", "全顎治療におけるFDOの診査診断", [("杉山達也", None)], "症例検討会"),
 ]
+COURSE_FEES_2027 = [("K2会員 または 卒後10年以内", "30万円"), ("一般", "40万円")]
+
+
+def teacher_html(name, photo, d):
+    if photo:
+        img = f'<img class="avatar" src="{rel("/assets/img/teachers/" + photo + ".jpg", d)}" alt="" width="56" height="56">'
+    else:
+        img = f'<span class="avatar avatar-blank" aria-hidden="true">{e(name[0])}</span>'
+    return f'<span class="teacher">{img}<span>{e(name)} 先生</span></span>'
 
 
 def page_handson():
     path, d = "/hands-on/", 1
-    items = "".join(
-        f'<li><div><span class="course-no">{no}</span><span class="course-date">{date}</span></div>'
-        f'<div class="course-theme">{e(theme)}</div><div class="course-teacher">講師：{e(t)}</div></li>'
-        for no, date, theme, t in COURSE_2026
-    )
+    items = ""
+    for i, (date, theme, teachers, tag) in enumerate(COURSE_2027, 1):
+        dd = dt.date.fromisoformat(date)
+        badge = f'<span class="course-tag">{e(tag)}</span>' if tag else ""
+        items += (
+            f'<li><div><span class="course-no">{i:02d}</span><span class="course-date">{dd.month}月{dd.day}日（{WEEK[dd.weekday()]}）</span></div>'
+            f'<div class="course-theme">{e(theme)}{badge}</div>'
+            f'<div class="teachers">{"".join(teacher_html(n, ph, d) for n, ph in teachers)}</div></li>'
+        )
+    fees = "".join(f'<p>{e(k)} <span class="num">{e(v)}</span>（税込）</p>' for k, v in COURSE_FEES_2027)
     body = page_head(
         "K2 ハンズオンコース",
         "機能と審美の追求 ― 伝説のクワタカレッジを継承する総合的な臨床セミナー",
@@ -495,28 +527,32 @@ def page_handson():
     <div><h2 class="section-title">コースについて</h2></div>
     <div class="stack" style="color:var(--ink-2)">
       <p>本セミナーは、金属焼付ポーセレンを開発した歯科技工士の桑田正博先生が長年主宰されていた臨床コース「クワタカレッジ」の流れを汲むハンズオンセミナーです。</p>
-      <p>講師陣は、桑田先生の提唱した咬合理論や修復治療のテクニックを継承し実践する臨床家たちで、修復治療のみならず歯周治療、歯内療法、矯正治療からメインテナンスに至るまで、桑田先生の臨床コンセプトに基づきプログラムが組まれています。</p>
-      <p>とりわけ、桑田先生の咬合理論 F.D.O（Functionally Discluded Occlusion）、審美的・機能的な要件を備えたクラウン形態については、講義に桑田先生の資料が用いられ、クワタカレッジで行われていたのと同じ内容の実習が受けられます。</p>
+      <p>講師陣は、桑田先生の提唱した咬合理論や修復治療のテクニックを継承し実践する臨床家たちです。修復治療の大概念から F.D.O 咬合理論の真髄、審美的・機能的な要件を備えた前歯・臼歯それぞれのクラウン形態、矯正治療を含む全顎的な咬合再構成、歯牙形態を考慮した衛生管理、咬合力を視野に入れた歯内療法まで、すべてが同一コンセプトのもとに行われます。</p>
+      <p>とりわけ桑田先生の咬合理論 F.D.O（Functionally Discluded Occlusion）と、審美的・機能的な要件を備えたクラウン形態については、講義に桑田先生の資料が用いられ、クワタカレッジで行われていたのと同じ内容の実習が受けられます。</p>
     </div>
   </div>
 </section>
 <section class="section section-night">
   <div class="wrap">
-    <div class="section-head"><p class="eyebrow">2026 PROGRAM</p><h2 class="section-title">第5期 ハンズオンコース 2026</h2><p class="muted-night" style="margin-top:12px">全5回 桑田正博先生の教えを受けた講師陣によるワンデーハンズオン（第5期は終了しました）</p></div>
+    <div class="section-head"><p class="eyebrow">2027 PROGRAM</p><h2 class="section-title">2027 年間コース　受講生募集</h2><p class="muted-night" style="margin-top:12px">咬合・補綴・審美を、深く学ぶ。全6回・日曜開催</p></div>
     <ol class="course-list">{items}</ol>
     <div class="fee-grid" style="margin-top:40px">
-      <div class="fee-box"><p class="label">FDO咬合コース（全5回）</p><p>一般 <span class="num">300,000</span>円</p><p>K2会員 / 卒後10年以内 <span class="num">220,000</span>円</p></div>
-      <div class="fee-box"><p class="label">単回K2コース</p><p>一般 <span class="num">66,000</span>円</p><p>K2会員 / 卒後10年以内 <span class="num">50,000</span>円</p></div>
-      <div class="fee-box"><p class="label">時間・会場</p><p>各回 9:30〜16:00</p><p>TT Dental Labo 2F 研修室<br><span class="muted-night" style="font-size:14px">東京都中央区新川 2-12-14</span></p></div>
+      <div class="fee-box"><p class="label">受講料（全6回）</p>{fees}<p class="muted-night" style="font-size:14px">※ 毎月払いが可能です。</p></div>
+      <div class="fee-box"><p class="label">時間・会場</p><p>決まり次第ご案内します。</p><p class="muted-night" style="font-size:14px">参考：2026年は各回 9:30〜16:00、TT Dental Labo 2F 研修室（東京都中央区新川 2-12-14）</p></div>
     </div>
-    <p class="muted-night" style="margin-top:16px;font-size:14px">※ 2026年度の費用です。お支払いの分割等はご相談ください。</p>
     <div class="cta-bar" style="margin-top:40px">
-      <p>2027年度（第6期）のご案内は、決まり次第こちらに掲載します。お申し込み・お問い合わせはコース事務局の申込フォームからお願いします。</p>
+      <p>お申し込み・お問い合わせは、コース事務局の申込フォームからお願いします。</p>
       <a class="btn btn-light" href="{e(L['handson_form'])}" target="_blank" rel="noopener">申込フォーム</a>
     </div>
   </div>
 </section>
 <section class="section">
+  <div class="wrap split">
+    <div><p class="eyebrow">FLYER</p><h2 class="section-title">募集案内</h2><p class="lead" style="margin-top:16px">SNSやLINEでの紹介にもお使いください。</p></div>
+    <img src="{rel('/assets/img/handson-2027.jpg', d)}" alt="K2 2027 年間コース 受講生募集の案内" width="1000" height="1000" style="border:1px solid var(--line)">
+  </div>
+</section>
+<section class="section section-white">
   <div class="wrap split">
     <div><p class="eyebrow">MESSAGE</p><h2 class="section-title">コースディレクター<br>北原信也</h2></div>
     <div class="stack" style="color:var(--ink-2)">
