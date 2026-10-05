@@ -388,3 +388,8 @@ h1, h2, h3, .section-title { font-variant-numeric: lining-nums; }
 .person-name { font-family: var(--serif); font-size: 17px; letter-spacing: 0.08em; }
 .person-meta { font-size: 13px; color: var(--night-muted); }
 @media (max-width: 640px) { .profile { grid-template-columns: 1fr; gap: 20px; } .profile img { max-width: 240px; } .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .person-photo { width: 96px; height: 96px; } }
+
+.person-bio { font-size: 12.5px; line-height: 1.7; color: var(--night-muted); margin-top: 8px; }
+.person-bio.is-pending { opacity: .55; letter-spacing: .05em; }
+.people-light .person-meta, .people-light .person-bio { color: var(--ink-2); }
+.pending-note { padding: 28px; border: 1px dashed var(--line, #ccc); color: var(--ink-2); text-align: center; font-size: 14px; }

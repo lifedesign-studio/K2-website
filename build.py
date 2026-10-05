@@ -32,7 +32,7 @@ L = SITE["links"]
 NAV = [
     ("/about/", "K2について"),
     ("/history/", "K2の歩み"),
-    ("/people/", "講師紹介"),
+    ("/people/", "役員・講師"),
     ("/events/", "定例会・イベント"),
     ("/hands-on/", "ハンズオンコース"),
 ]
@@ -121,7 +121,7 @@ def layout(path, title, body, depth, description=None, current=None, theme=None)
       <a href="{rel('/', depth)}">トップ</a>
       <a href="{rel('/about/', depth)}">K2について</a>
       <a href="{rel('/history/', depth)}">K2の歩み</a>
-      <a href="{rel('/people/', depth)}">講師紹介</a>
+      <a href="{rel('/people/', depth)}">役員・講師紹介</a>
       <a href="{rel('/events/', depth)}">定例会・イベント</a>
       <a href="{rel('/hands-on/', depth)}">ハンズオンコース</a>
       <a href="{rel('/join/', depth)}">入会案内</a>
@@ -273,7 +273,7 @@ def page_home():
     <div class="guide-grid">
       <a class="guide-card" href="{rel('/about/', d)}"><span class="g-en">About</span><span class="g-ja">K2について</span><span class="g-tx">理念と、K.I.M・K-ing から続くなりたち</span></a>
       <a class="guide-card" href="{rel('/history/', d)}"><span class="g-en">History</span><span class="g-ja">K2の歩み</span><span class="g-tx">これまでの例会・サマーセミナーの記録</span></a>
-      <a class="guide-card" href="{rel('/people/', d)}"><span class="g-en">People</span><span class="g-ja">講師紹介</span><span class="g-tx">名誉顧問・主宰と講師陣のプロフィール</span></a>
+      <a class="guide-card" href="{rel('/people/', d)}"><span class="g-en">People</span><span class="g-ja">役員・講師紹介</span><span class="g-tx">名誉顧問・主宰、役員、コース講師陣</span></a>
     </div>
   </div>
 </section>
@@ -440,28 +440,35 @@ def page_people():
       <img src="{rel(p['photo'], d)}" alt="{e(p['name'])}先生" width="448" height="560" loading="lazy">
       <div class="stack"><p class="p-role">{e(p['role'])}</p><h2 class="leader-name">{e(p['name'])}<span class="p-roma">{e(p['roma'])}</span></h2><div class="prose" style="color:var(--ink-2)">{bio}</div></div>
     </article>"""
-    board = ""
+    def card(x, meta):
+        bio = x.get("bio") or ""
+        bio_html = f'<p class="person-bio">{e(bio)}</p>' if bio else '<p class="person-bio is-pending">プロフィール準備中</p>'
+        return f'<div class="person">{teacher_img(x.get("photo"), x["name"], d)}<p class="person-name">{e(x["name"])} 先生</p><p class="person-meta">{e(meta)}</p>{bio_html}</div>'
+
     if PEOPLE.get("board"):
-        cards = "".join(f'<div class="person">{teacher_img(b.get("photo"), b["name"], d)}<p class="person-name">{e(b["name"])} 先生</p><p class="person-meta">{e(b.get("role", ""))}</p></div>' for b in PEOPLE["board"])
-        board = f'<section class="section section-white"><div class="wrap"><div class="section-head"><p class="eyebrow">BOARD</p><h2 class="section-title">理事</h2></div><div class="people-grid">{cards}</div></div></section>'
-    lect = "".join(
-        f'<div class="person">{teacher_img(t.get("photo"), t["name"], d)}<p class="person-name">{e(t["name"])} 先生</p><p class="person-meta">{e("／".join(t.get("topics", [])))}</p></div>'
-        for t in PEOPLE["lecturers"]
-    )
-    body = page_head("講師紹介", "K2の名誉顧問・主宰と、ハンズオンコース・例会の講師陣です。", "PEOPLE", d) + f"""
+        board_inner = '<div class="people-grid people-light">' + "".join(card(b, b.get("role", "")) for b in PEOPLE["board"]) + "</div>"
+    else:
+        board_inner = '<p class="pending-note">役員の紹介は準備中です。</p>'
+    lect = "".join(card(t, "／".join(t.get("topics", []))) for t in PEOPLE["lecturers"])
+    body = page_head("役員・講師紹介", "K2の名誉顧問・主宰、役員、ハンズオンコースの講師陣をご紹介します。", "PEOPLE", d) + f"""
 <section class="section section-white">
   <div class="wrap profiles">{leaders}</div>
 </section>
-{board}
-<section class="section theme-navy section-night">
+<section class="section" id="board">
   <div class="wrap">
-    <div class="section-head"><p class="eyebrow">LECTURERS</p><h2 class="section-title">講師陣</h2><p class="muted-night" style="margin-top:12px">桑田正博先生の咬合理論と修復治療のテクニックを継承し、実践する臨床家たちです。</p></div>
+    <div class="section-head"><p class="eyebrow">BOARD</p><h2 class="section-title">K2 役員</h2><p style="margin-top:12px;color:var(--ink-2)">K2の運営（例会・サマーセミナー・懇親会など）を担う役員です。</p></div>
+    {board_inner}
+  </div>
+</section>
+<section class="section theme-navy section-night" id="course-lecturers">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">HANDS-ON COURSE LECTURERS</p><h2 class="section-title">ハンズオンコース 講師陣</h2><p class="muted-night" style="margin-top:12px">年間コースで講義・実習を担当する先生方です。コースは K2 の例会とは別の事務局で運営しています。</p></div>
     <div class="people-grid">{lect}</div>
     <p style="margin-top:40px"><a class="btn btn-light" href="{rel('/hands-on/', d)}">ハンズオンコースを見る</a></p>
   </div>
 </section>
 """
-    write(path, layout(path, "講師紹介", body, d, current="/people/"))
+    write(path, layout(path, "役員・講師紹介", body, d, current="/people/"))
 
 
 def teacher_img(photo, name, d):

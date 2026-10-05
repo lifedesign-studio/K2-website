@@ -1,35 +1,134 @@
 {
-  "_note": "理事・講師のプロフィール。photo は /assets/img/teachers/ の画像。bio は分かっているものだけ。board（理事）は役員会で確認のうえ追加する。",
+  "_note": "leaders=名誉顧問・主宰 / board=K2役員（K2の運営） / lecturers=ハンズオンコース講師陣（コースは別事務局）。各人に bio（説明文）を入れると表示、空なら「プロフィール準備中」。photo は /assets/img/teachers/ の画像キー。",
   "leaders": [
     {
       "name": "桑田正博",
       "roma": "Masahiro Kuwata",
       "role": "名誉顧問",
       "photo": "/assets/img/portrait-kuwata.jpg",
-      "bio": ["歯科技工士。ボストン大学客員教授。", "PFMクラウン（金属焼付ポーセレン：通称メタルボンド）の共同開発者。アメリカで100年以上続く Academy of Prosthodontics（アメリカ歯科補綴学会）の名誉会員。世界中に5,000人を超える教え子を持つ。", "K2の名誉顧問を務めた。"]
+      "bio": [
+        "歯科技工士。ボストン大学客員教授。",
+        "PFMクラウン（金属焼付ポーセレン：通称メタルボンド）の共同開発者。アメリカで100年以上続く Academy of Prosthodontics（アメリカ歯科補綴学会）の名誉会員。世界中に5,000人を超える教え子を持つ。",
+        "K2の名誉顧問を務めた。"
+      ]
     },
     {
       "name": "北原信也",
       "roma": "Nobuya Kitahara",
       "role": "主宰／ハンズオンコース ディレクター",
       "photo": "/assets/img/portrait-kitahara.jpg",
-      "bio": ["東京都出身。1989年 日本大学松戸歯学部卒業。1992年 北原歯科医院開院、2000年 ルウミネッセンス開院、2003年 銀座ノブデンタルオフィス開院。2007年 シンガポールライセンス取得（TP Dental Surgeon 非常勤）。2012年 東京八重洲に TEAM東京 ノブレストラティブデンタルオフィス開院。2014年 シンガポール Asia Healthcare Dental Center 非常勤。", "日本大学客員教授（松戸歯学部）、昭和大学歯学部客員教授、日本大学歯学部兼任講師、日本臨床歯科医学会（SJCD）東京支部理事、SJCDレギュラーコースインストラクター。", "American Academy of Esthetic Dentistry（AAED）会員。日本歯周病学会、日本歯科保存学会、日本接着歯学会、日本歯科理工学会、日本審美歯科学会、日本顎咬合学会 所属。"]
+      "bio": [
+        "東京都出身。1989年 日本大学松戸歯学部卒業。1992年 北原歯科医院開院、2000年 ルウミネッセンス開院、2003年 銀座ノブデンタルオフィス開院。2007年 シンガポールライセンス取得（TP Dental Surgeon 非常勤）。2012年 東京八重洲に TEAM東京 ノブレストラティブデンタルオフィス開院。2014年 シンガポール Asia Healthcare Dental Center 非常勤。",
+        "日本大学客員教授（松戸歯学部）、昭和大学歯学部客員教授、日本大学歯学部兼任講師、日本臨床歯科医学会（SJCD）東京支部理事、SJCDレギュラーコースインストラクター。",
+        "American Academy of Esthetic Dentistry（AAED）会員。日本歯周病学会、日本歯科保存学会、日本接着歯学会、日本歯科理工学会、日本審美歯科学会、日本顎咬合学会 所属。"
+      ]
     }
   ],
   "board": [],
   "lecturers": [
-    { "name": "茂野啓示", "photo": "shigeno", "topics": ["咬合理論と咬合器の基礎"] },
-    { "name": "園田晋平", "photo": "sonoda", "topics": ["FDO理論に基づいた咬合調整"] },
-    { "name": "遠山敏成", "photo": "toyama", "topics": ["臼歯の機能的な形態と接触方法"] },
-    { "name": "清水良介", "photo": "shimizu", "topics": ["臼歯の機能的な形態と接触方法"] },
-    { "name": "上林健", "photo": "kambayashi", "topics": ["前歯の審美形態と支台歯形成"] },
-    { "name": "高島浩二", "photo": "takashima", "topics": ["全顎的なセットアップ方法"] },
-    { "name": "杉山達也", "photo": null, "topics": ["全顎治療におけるFDOの診査診断"] },
-    { "name": "菅義嗣", "photo": "suga", "topics": ["FDO理論に基づいた咬合調整"] },
-    { "name": "宮澤広人", "photo": "miyazawa", "topics": ["FDO理論に基づいた咬合調整"] },
-    { "name": "篠原宏晨", "photo": "shinohara", "topics": ["全顎的なセットアップ方法"] },
-    { "name": "橋爪英城", "photo": "hashizume", "topics": ["根管治療"] },
-    { "name": "土屋和子", "photo": "tsuchiya", "topics": ["歯科衛生（ワンデーセミナー）"] },
-    { "name": "葭澤秀一郎", "photo": "yoshizawa", "topics": ["睡眠時無呼吸症へのアプローチ（ワンデーセミナー）"] }
+    {
+      "name": "茂野啓示",
+      "photo": "shigeno",
+      "topics": [
+        "咬合理論と咬合器の基礎"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "園田晋平",
+      "photo": "sonoda",
+      "topics": [
+        "FDO理論に基づいた咬合調整"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "遠山敏成",
+      "photo": "toyama",
+      "topics": [
+        "臼歯の機能的な形態と接触方法"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "清水良介",
+      "photo": "shimizu",
+      "topics": [
+        "臼歯の機能的な形態と接触方法"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "上林健",
+      "photo": "kambayashi",
+      "topics": [
+        "前歯の審美形態と支台歯形成"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "高島浩二",
+      "photo": "takashima",
+      "topics": [
+        "全顎的なセットアップ方法"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "杉山達也",
+      "photo": null,
+      "topics": [
+        "全顎治療におけるFDOの診査診断"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "菅義嗣",
+      "photo": "suga",
+      "topics": [
+        "FDO理論に基づいた咬合調整"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "宮澤広人",
+      "photo": "miyazawa",
+      "topics": [
+        "FDO理論に基づいた咬合調整"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "篠原宏晨",
+      "photo": "shinohara",
+      "topics": [
+        "全顎的なセットアップ方法"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "橋爪英城",
+      "photo": "hashizume",
+      "topics": [
+        "根管治療"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "土屋和子",
+      "photo": "tsuchiya",
+      "topics": [
+        "歯科衛生（ワンデーセミナー）"
+      ],
+      "bio": ""
+    },
+    {
+      "name": "葭澤秀一郎",
+      "photo": "yoshizawa",
+      "topics": [
+        "睡眠時無呼吸症へのアプローチ（ワンデーセミナー）"
+      ],
+      "bio": ""
+    }
   ]
 }
