@@ -1,138 +1,735 @@
 {
-  "_note": "K2の歩み。年ごとに新しい順。items は日付・種別・講師・演題。photos は /assets/history/ の画像。出典：公式Instagram（@k2__dental）の投稿と、写真フォルダの名前（2026-10-05時点）。講師名が分からない回は speakers を空にしている（[確認中]と表示）。",
+  "_note": "K2の歩み。years は K2（2017年〜）の記録、roots は統合前の2つの流れ（北原塾・K-ing／K.I.M）。年ごとに新しい順。出典：公式Instagram、写真フォルダ、Dropbox 04_K2 の案内・議事録（2026-10-06）。講師名が分からない回は speakers を空にしている（[確認中]と表示）。",
   "years": [
     {
       "year": 2026,
       "items": [
-        { "date": "2026.10.11", "type": "特別公開", "title": "K2症例検討会 in SHAPERS EXPO 2026（TOKYO PORTCITY TAKESHIBA）", "speakers": ["小川大輔", "杉山達也", "園田晋平"] },
-        { "date": "2026.9.5–6", "type": "受賞", "title": "日本臨床歯科学会 第10回合同例会（京都）東京支部代表として発表・4位「過蓋咬合を伴う咬合崩壊を呈する患者に対して咬合再構成を行った一症例」", "speakers": ["杉山達也"] },
-        { "date": "2026.8.30", "type": "サマーセミナー", "title": "日本の歯科業界の未来／臼歯部のジルコニアオーバーレイ", "speakers": ["赤司征大（WHITE CROSS 代表取締役CEO）", "遠山敏成"] },
-        { "date": "2026.7.11", "type": "例会", "title": "特別講演", "speakers": ["荻原太郎"] },
-        { "date": "2026.6", "type": "例会", "title": "ドクターブック例会", "speakers": [] }
+        {
+          "date": "2026.10.11",
+          "type": "特別公開",
+          "title": "K2症例検討会 in SHAPERS EXPO 2026（TOKYO PORTCITY TAKESHIBA）",
+          "speakers": [
+            "小川大輔",
+            "杉山達也",
+            "園田晋平"
+          ]
+        },
+        {
+          "date": "2026.9.5–6",
+          "type": "受賞",
+          "title": "日本臨床歯科学会 第10回合同例会（京都）東京支部代表として発表・4位「過蓋咬合を伴う咬合崩壊を呈する患者に対して咬合再構成を行った一症例」",
+          "speakers": [
+            "杉山達也"
+          ]
+        },
+        {
+          "date": "2026.8.30",
+          "type": "サマーセミナー",
+          "title": "日本の歯科業界の未来／臼歯部のジルコニアオーバーレイ",
+          "speakers": [
+            "赤司征大（WHITE CROSS 代表取締役CEO）",
+            "遠山敏成"
+          ]
+        },
+        {
+          "date": "2026.7.11",
+          "type": "例会",
+          "title": "特別講演",
+          "speakers": [
+            "荻原太郎"
+          ]
+        },
+        {
+          "date": "2026.6",
+          "type": "例会",
+          "title": "ドクターブック例会",
+          "speakers": []
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2026-summer-group.jpg", "caption": "サマーセミナー" },
-        { "image": "/assets/history/2026-summer-lecture.jpg", "caption": "サマーセミナー 講演" },
-        { "image": "/assets/history/2026-06-meeting-group.jpg", "caption": "6月 例会" }
+        {
+          "image": "/assets/history/2026-summer-group.jpg",
+          "caption": "サマーセミナー"
+        },
+        {
+          "image": "/assets/history/2026-summer-lecture.jpg",
+          "caption": "サマーセミナー 講演"
+        },
+        {
+          "image": "/assets/history/2026-06-meeting-group.jpg",
+          "caption": "6月 例会"
+        }
       ]
     },
     {
       "year": 2025,
       "items": [
-        { "date": "2025.12.7", "type": "ワンデーセミナー", "title": "咬合を踏まえた睡眠時無呼吸症に対するアプローチ", "speakers": ["葭澤秀一郎"] },
-        { "date": "2025.11.16", "type": "ワンデーセミナー", "title": "歯科衛生士による講演とハンズオン", "speakers": ["土屋和子"] },
-        { "date": "2025.8.31", "type": "サマーセミナー", "title": "軽井沢", "speakers": ["大谷一紀"] },
-        { "date": "2025.7.12", "type": "例会（第4回）", "title": "多数補綴歯の患者に咬合再構成治療をおこなった1症例／MIを考慮した審美的全顎治療計画の立案", "speakers": ["菅義嗣", "植原亮"] },
-        { "date": "2025.5.10", "type": "例会（第3回）", "title": "再根管治療のポイント　コア除去、ガッタパーチャ除去", "speakers": ["橋爪英城"] },
-        { "date": "2025.3.1", "type": "例会（第2回）", "title": "ジルコニアオーバーレイ", "speakers": ["遠山敏成"] },
-        { "date": "2025.1.25", "type": "例会（第1回）", "title": "バーチャル咬合器を使いこなすための要件", "speakers": ["高瀬直（歯科技工士）"] }
+        {
+          "date": "2025.12.7",
+          "type": "ワンデーセミナー",
+          "title": "咬合を踏まえた睡眠時無呼吸症に対するアプローチ",
+          "speakers": [
+            "葭澤秀一郎"
+          ]
+        },
+        {
+          "date": "2025.11.16",
+          "type": "ワンデーセミナー",
+          "title": "歯科衛生士による講演とハンズオン",
+          "speakers": [
+            "土屋和子"
+          ]
+        },
+        {
+          "date": "2025.8.31",
+          "type": "サマーセミナー",
+          "title": "軽井沢",
+          "speakers": [
+            "大谷一紀"
+          ]
+        },
+        {
+          "date": "2025.7.12",
+          "type": "例会（第4回）",
+          "title": "多数補綴歯の患者に咬合再構成治療をおこなった1症例／MIを考慮した審美的全顎治療計画の立案",
+          "speakers": [
+            "菅義嗣",
+            "植原亮"
+          ]
+        },
+        {
+          "date": "2025.5.10",
+          "type": "例会（第3回）",
+          "title": "再根管治療のポイント　コア除去、ガッタパーチャ除去",
+          "speakers": [
+            "橋爪英城"
+          ]
+        },
+        {
+          "date": "2025.3.1",
+          "type": "例会（第2回）",
+          "title": "ジルコニアオーバーレイ",
+          "speakers": [
+            "遠山敏成"
+          ]
+        },
+        {
+          "date": "2025.1.25",
+          "type": "例会（第1回）",
+          "title": "バーチャル咬合器を使いこなすための要件",
+          "speakers": [
+            "高瀬直（歯科技工士）"
+          ]
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2025-01-meeting.jpg", "caption": "1月 例会" }
+        {
+          "image": "/assets/history/2025-01-meeting.jpg",
+          "caption": "1月 例会"
+        }
       ]
     },
     {
       "year": 2024,
       "items": [
-        { "date": "2024.10.12", "type": "例会（第5回）", "title": "FDOのコンセプトで行う全顎治療／Tooth wearに対して咬合再構成を行った症例とその経過報告", "speakers": ["杉山達也", "高野悟"] },
-        { "date": "2024.8.25", "type": "サマーセミナー", "title": "学術・教育・経営", "speakers": ["栗林"] },
-        { "date": "2024.6.23", "type": "ハンズオンコース", "title": "第3回", "speakers": [] },
-        { "date": "2024.5.11", "type": "定例会", "title": "イニシャルトリートメントの失敗／難治性歯痛の成因と対応／マイクロスコープと再根管治療", "speakers": ["橋爪英城"] }
+        {
+          "date": "2024.10.12",
+          "type": "例会（第5回）",
+          "title": "FDOのコンセプトで行う全顎治療／Tooth wearに対して咬合再構成を行った症例とその経過報告",
+          "speakers": [
+            "杉山達也",
+            "高野悟"
+          ]
+        },
+        {
+          "date": "2024.8.25",
+          "type": "サマーセミナー",
+          "title": "学術・教育・経営",
+          "speakers": [
+            "栗林"
+          ]
+        },
+        {
+          "date": "2024.6.23",
+          "type": "ハンズオンコース",
+          "title": "第3回",
+          "speakers": []
+        },
+        {
+          "date": "2024.5.11",
+          "type": "定例会",
+          "title": "イニシャルトリートメントの失敗／難治性歯痛の成因と対応／マイクロスコープと再根管治療",
+          "speakers": [
+            "橋爪英城"
+          ]
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2024-summer.jpg", "caption": "サマーセミナー" },
-        { "image": "/assets/history/2024-meeting-group.jpg", "caption": "5月 定例会" },
-        { "image": "/assets/history/2024-course.jpg", "caption": "ハンズオンコース" }
+        {
+          "image": "/assets/history/2024-summer.jpg",
+          "caption": "サマーセミナー"
+        },
+        {
+          "image": "/assets/history/2024-meeting-group.jpg",
+          "caption": "5月 定例会"
+        },
+        {
+          "image": "/assets/history/2024-course.jpg",
+          "caption": "ハンズオンコース"
+        }
       ]
     },
     {
       "year": 2023,
       "items": [
-        { "date": "2023.8", "type": "サマーセミナー", "title": "", "speakers": [] },
-        { "date": "2023.4〜12", "type": "ハンズオンコース", "title": "全9回", "speakers": [] },
-        { "date": "2023.2.12", "type": "KIM年次総会", "title": "Airway Seminar「Life-saving Dentistry ― 気道中心の歯科医療の実践」", "speakers": ["園田晋平", "葭澤秀一郎", "三村彰吾", "Shigeharu Yoshida", "Keisuke Inoue", "Keisuke Iida"] }
+        {
+          "date": "2023.8",
+          "type": "サマーセミナー",
+          "title": "",
+          "speakers": []
+        },
+        {
+          "date": "2023.4〜12",
+          "type": "ハンズオンコース",
+          "title": "全9回",
+          "speakers": []
+        },
+        {
+          "date": "2023.2.12",
+          "type": "KIM年次総会",
+          "title": "Airway Seminar「Life-saving Dentistry ― 気道中心の歯科医療の実践」",
+          "speakers": [
+            "園田晋平",
+            "葭澤秀一郎",
+            "三村彰吾",
+            "Shigeharu Yoshida",
+            "Keisuke Inoue",
+            "Keisuke Iida"
+          ]
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2023-summer-group.jpg", "caption": "サマーセミナー" }
+        {
+          "image": "/assets/history/2023-summer-group.jpg",
+          "caption": "サマーセミナー"
+        }
       ]
     },
     {
       "year": 2022,
       "items": [
-        { "date": "2022.8", "type": "サマーセミナー", "title": "", "speakers": [] }
+        {
+          "date": "2022.8",
+          "type": "サマーセミナー",
+          "title": "",
+          "speakers": []
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2022-summer-hall.jpg", "caption": "サマーセミナー" },
-        { "image": "/assets/history/2022-summer-speakers.jpg", "caption": "サマーセミナー 講師陣" }
+        {
+          "image": "/assets/history/2022-summer-hall.jpg",
+          "caption": "サマーセミナー"
+        },
+        {
+          "image": "/assets/history/2022-summer-speakers.jpg",
+          "caption": "サマーセミナー 講師陣"
+        }
       ]
+    },
+    {
+      "year": 2021,
+      "items": [
+        {
+          "date": "2021.8.9",
+          "type": "サマーセミナー",
+          "title": "審美修復治療における全顎治療の長期症例（Web併設）",
+          "speakers": [
+            "山崎長郎"
+          ]
+        },
+        {
+          "date": "2021.3.27",
+          "type": "例会",
+          "title": "オンライン開催",
+          "speakers": []
+        },
+        {
+          "date": "2021.1.23",
+          "type": "例会",
+          "title": "オンライン開催（この年から例会をWebでも開催）",
+          "speakers": []
+        }
+      ],
+      "photos": []
     },
     {
       "year": 2020,
       "items": [
-        { "date": "2020.2.9", "type": "KIM総会", "title": "", "speakers": [] }
+        {
+          "date": "2020.2.9",
+          "type": "KIM総会",
+          "title": "K.I.M 4th Annual Meeting「Dentistry is Occlusion」The Occlusion／SASとOcclusion／QDT連載メンバーによる発表（座長：茂野啓示・北原信也）",
+          "speakers": [
+            "桑田正博",
+            "堀切雅文",
+            "遠山敏成",
+            "三村彰吾",
+            "園田晋平"
+          ]
+        },
+        {
+          "date": "2020.1.25",
+          "type": "例会",
+          "title": "症例発表",
+          "speakers": [
+            "杉山達也",
+            "宮澤広人（歯科技工士）"
+          ]
+        },
+        {
+          "date": "2020.3・5",
+          "type": "例会",
+          "title": "新型コロナウイルス感染症の影響で中止",
+          "speakers": []
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2020-kim-sokai-group.jpg", "caption": "KIM総会" },
-        { "image": "/assets/history/2020-kim-sokai.jpg", "caption": "KIM総会" }
+        {
+          "image": "/assets/history/2020-kim-sokai-group.jpg",
+          "caption": "KIM総会"
+        },
+        {
+          "image": "/assets/history/2020-kim-sokai.jpg",
+          "caption": "KIM総会"
+        },
+        {
+          "image": "/assets/history/2020-kim-annual-panel.jpg",
+          "caption": "KIM総会 パネルディスカッション"
+        }
       ]
     },
     {
       "year": 2019,
       "items": [
-        { "date": "2019.10.26", "type": "定例会", "title": "", "speakers": [] },
-        { "date": "2019.5.18", "type": "定例会", "title": "", "speakers": [] },
-        { "date": "2019.1.26", "type": "定例会", "title": "", "speakers": [] }
+        {
+          "date": "2019.10.26",
+          "type": "例会",
+          "title": "",
+          "speakers": [
+            "園田晋平"
+          ]
+        },
+        {
+          "date": "2019.9.1",
+          "type": "サマーセミナー",
+          "title": "失敗から学ぶ ～失敗ケースのフォローの仕方～",
+          "speakers": [
+            "今井俊広",
+            "今井真弓"
+          ]
+        },
+        {
+          "date": "2019.7.20",
+          "type": "例会",
+          "title": "",
+          "speakers": [
+            "菅野",
+            "田島"
+          ]
+        },
+        {
+          "date": "2019.5.18",
+          "type": "例会",
+          "title": "睡眠時無呼吸について",
+          "speakers": [
+            "堀切雅文",
+            "片平"
+          ]
+        },
+        {
+          "date": "2019.3.23",
+          "type": "例会",
+          "title": "",
+          "speakers": [
+            "天井"
+          ]
+        },
+        {
+          "date": "2019.1.26",
+          "type": "例会",
+          "title": "",
+          "speakers": [
+            "北原信也"
+          ]
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2019-meeting.jpg", "caption": "定例会" }
+        {
+          "image": "/assets/history/2019-meeting.jpg",
+          "caption": "定例会"
+        }
       ]
     },
     {
       "year": 2018,
       "items": [
-        { "date": "2018", "type": "サマーセミナー", "title": "", "speakers": ["桑田正博"] },
-        { "date": "2018.5.16", "type": "例会", "title": "", "speakers": [] },
-        { "date": "2018.1.20", "type": "例会", "title": "", "speakers": [] }
+        {
+          "date": "2018.8.26",
+          "type": "サマーセミナー",
+          "title": "K2設立記念講演「修復治療の変遷、そしてこれからの歯科治療を展望する」（K2として初のサマーセミナー）",
+          "speakers": [
+            "桑田正博"
+          ]
+        },
+        {
+          "date": "2018.5.16",
+          "type": "例会",
+          "title": "",
+          "speakers": []
+        },
+        {
+          "date": "2018.1.20",
+          "type": "例会",
+          "title": "",
+          "speakers": []
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2018-meeting.jpg", "caption": "例会" }
+        {
+          "image": "/assets/history/2018-meeting.jpg",
+          "caption": "例会"
+        }
       ]
     },
     {
       "year": 2017,
       "items": [
-        { "date": "2017.11.25", "type": "講演", "title": "", "speakers": ["西山"] },
-        { "date": "2017", "type": "発足", "title": "K-ing と K.I.M が統合し、K2 が発足", "speakers": [] }
+        {
+          "date": "2017.11.25",
+          "type": "発足",
+          "title": "第1回役員会。北原塾・K-ing と K.I.M が統合した会の名称・理念（「審美と機能を学ぶスタディグループ」）・役員体制を決定。この日を K2 の始まりとしています",
+          "speakers": []
+        },
+        {
+          "date": "2017.11.25",
+          "type": "講演",
+          "title": "",
+          "speakers": [
+            "西山"
+          ]
+        }
       ],
       "photos": [
-        { "image": "/assets/history/2017-nishiyama.jpg", "caption": "西山先生 講演" }
+        {
+          "image": "/assets/history/2017-nishiyama.jpg",
+          "caption": "西山先生 講演"
+        }
+      ]
+    }
+  ],
+  "roots": [
+    {
+      "id": "king",
+      "name": "北原塾・K-ing",
+      "en": "Kitahara Academy",
+      "since": "2007",
+      "lead": "2007年、北原信也先生のもと「北原塾」として始まりました。SJCDレギュラーコース受講生の寺子屋として、審美と補綴を中心に症例発表を重ねる勉強会です。のちに名称を「K-ing」と改め、一時は「T-FED」の名称も使いました。",
+      "years": [
+        {
+          "year": 2017,
+          "items": [
+            {
+              "date": "2017.8.20",
+              "type": "サマーセミナー",
+              "title": "ペリオ",
+              "speakers": [
+                "若林健史"
+              ]
+            },
+            {
+              "date": "2017.3.19",
+              "type": "スペシャルセミナー",
+              "title": "アメリカ歯周治療の最前線に学ぶ（座長：若林健史・北原信也）",
+              "speakers": [
+                "Dr. Seiko Min（閔成弘・米国ボード認定歯周病専門医）"
+              ]
+            },
+            {
+              "date": "2017.1.21",
+              "type": "オープンセミナー",
+              "title": "デジタルデンティストリーの現状",
+              "speakers": [
+                "北原信也"
+              ]
+            }
+          ],
+          "photos": [
+            {
+              "image": "/assets/history/2017-king-open-seminar.jpg",
+              "caption": "1月 オープンセミナー"
+            }
+          ]
+        },
+        {
+          "year": 2016,
+          "items": [
+            {
+              "date": "2016.12.17",
+              "type": "忘年会",
+              "title": "K.I.M 東京支部と合同で開催",
+              "speakers": []
+            },
+            {
+              "date": "2016.9.24",
+              "type": "例会",
+              "title": "特別講演",
+              "speakers": [
+                "中村茂人"
+              ]
+            },
+            {
+              "date": "2016.8.21",
+              "type": "サマーセミナー",
+              "title": "創立10周年記念サマーセミナー（東京 K.I.M と合同）",
+              "speakers": [
+                "茂野啓示"
+              ]
+            },
+            {
+              "date": "2016.3.26",
+              "type": "例会",
+              "title": "オクルージョン",
+              "speakers": [
+                "遠山敏成"
+              ]
+            }
+          ],
+          "photos": [
+            {
+              "image": "/assets/history/2016-summer-10th-group.jpg",
+              "caption": "創立10周年記念サマーセミナー"
+            }
+          ]
+        },
+        {
+          "year": 2015,
+          "items": [
+            {
+              "date": "2015.8.29–30",
+              "type": "サマーセミナー",
+              "title": "富山（宇奈月温泉）で開催",
+              "speakers": []
+            },
+            {
+              "date": "2015.1.24",
+              "type": "オープンセミナー",
+              "title": "Esthetic treatment with definitely diagnosis",
+              "speakers": [
+                "北原信也"
+              ]
+            }
+          ],
+          "photos": []
+        },
+        {
+          "year": 2014,
+          "items": [
+            {
+              "date": "2014.8.31",
+              "type": "サマーセミナー",
+              "title": "ダイレクトボンディング（充填ライブ）",
+              "speakers": [
+                "宮崎真至（日本大学歯学部 教授）"
+              ]
+            },
+            {
+              "date": "2014.1.25",
+              "type": "オープンセミナー",
+              "title": "",
+              "speakers": [
+                "北原信也"
+              ]
+            }
+          ],
+          "photos": [
+            {
+              "image": "/assets/history/2014-king-summer-lecture.jpg",
+              "caption": "サマーセミナー 講演"
+            },
+            {
+              "image": "/assets/history/2014-king-summer-group.jpg",
+              "caption": "サマーセミナー"
+            }
+          ]
+        },
+        {
+          "year": 2013,
+          "items": [
+            {
+              "date": "2013.8.25",
+              "type": "サマーセミナー",
+              "title": "歯科医療安全管理は万全ですか？",
+              "speakers": [
+                "渋谷鑛（日本大学松戸歯学部 学部長）"
+              ]
+            }
+          ],
+          "photos": [
+            {
+              "image": "/assets/history/2013-king-summer.jpg",
+              "caption": "サマーセミナー"
+            }
+          ]
+        },
+        {
+          "year": 2012,
+          "items": [
+            {
+              "date": "2012.8.26",
+              "type": "サマーセミナー",
+              "title": "軽井沢",
+              "speakers": [
+                "土屋和子（スマイル・ケア）"
+              ]
+            }
+          ],
+          "photos": []
+        },
+        {
+          "year": 2010,
+          "items": [
+            {
+              "date": "2010.8.1",
+              "type": "夏季合宿",
+              "title": "第一回夏季合宿 in 軽井沢。ご家族・スタッフも参加。いまのサマーセミナーの原点",
+              "speakers": [
+                "北原信也",
+                "土屋覚"
+              ]
+            }
+          ],
+          "photos": []
+        },
+        {
+          "year": 2007,
+          "items": [
+            {
+              "date": "2007",
+              "type": "発足",
+              "title": "北原塾 発足。SJCDレギュラーコース受講生の寺子屋として、審美と補綴を中心に学ぶ勉強会",
+              "speakers": []
+            }
+          ],
+          "photos": []
+        }
       ]
     },
     {
-      "year": 2016,
-      "items": [
-        { "date": "2016.8.21", "type": "サマーセミナー", "title": "", "speakers": [] }
-      ],
-      "photos": []
-    },
-    {
-      "year": 2013,
-      "items": [
-        { "date": "2013.8.24", "type": "K-ing サマーセミナー", "title": "", "speakers": [] }
-      ],
-      "photos": [
-        { "image": "/assets/history/2013-king-summer.jpg", "caption": "K-ing サマーセミナー" }
+      "id": "kim",
+      "name": "K.I.M",
+      "en": "Kuwata Institute Millennium",
+      "since": "2007",
+      "lead": "2007年、歯科技工士を中心に、桑田正博先生の咬合理論（F.D.O：Functionally Discluded Occlusion）を学ぶ勉強会として発足しました。「桑田先生の理論と技術の正確な継承、臨床への応用と後世への伝承」を目的に、総会や学会発表を重ねてきました。K2 の発足後も、K.I.M の総会は続いています。",
+      "years": [
+        {
+          "year": 2016,
+          "items": [
+            {
+              "date": "2016.8.21",
+              "type": "サマーセミナー",
+              "title": "K-ing と合同でサマーセミナーを開催",
+              "speakers": []
+            },
+            {
+              "date": "2016.2.7",
+              "type": "オープンミーティング",
+              "title": "世界最先端歯科治療における咬合臨床",
+              "speakers": [
+                "北原信也",
+                "上林健",
+                "茂野啓示",
+                "吉永修",
+                "川嵜俊明",
+                "三村彰吾",
+                "桑田正博"
+              ]
+            }
+          ],
+          "photos": []
+        },
+        {
+          "year": 2014,
+          "items": [
+            {
+              "date": "2014.6.14",
+              "type": "総会",
+              "title": "2014年度 K.I.M 総会（東京・銀座）",
+              "speakers": []
+            }
+          ],
+          "photos": []
+        },
+        {
+          "year": 2013,
+          "items": [
+            {
+              "date": "2013.6.29",
+              "type": "総会",
+              "title": "2013年度 K.I.M 総会（東京・丸の内）",
+              "speakers": []
+            }
+          ],
+          "photos": [
+            {
+              "image": "/assets/history/2013-kim-sokai-group.jpg",
+              "caption": "K.I.M 総会"
+            }
+          ]
+        },
+        {
+          "year": 2011,
+          "items": [
+            {
+              "date": "2011.12.4",
+              "type": "総会",
+              "title": "F.D.O を各学会で発表していく方針を決定",
+              "speakers": []
+            }
+          ],
+          "photos": []
+        },
+        {
+          "year": 2010,
+          "items": [
+            {
+              "date": "2010.10.3",
+              "type": "第1回総会",
+              "title": "「桑田理論を日本に根付かせる」を掲げて開催（東京・渋谷）。桑田先生のご講演と会員の症例発表",
+              "speakers": [
+                "桑田正博",
+                "茂野啓示",
+                "園田晋平",
+                "三村彰吾",
+                "小笠原美由紀",
+                "安冨哲士"
+              ]
+            }
+          ],
+          "photos": []
+        },
+        {
+          "year": 2007,
+          "items": [
+            {
+              "date": "2007",
+              "type": "発足",
+              "title": "K.I.M（Kuwata Institute Millennium）-Tokyo 発足。歯科技工士を中心に桑田先生の咬合理論を学ぶ勉強会",
+              "speakers": []
+            }
+          ],
+          "photos": []
+        }
       ]
-    },
-    {
-      "year": 2008,
-      "items": [ { "date": "2008", "type": "発足", "title": "K-ing（北原塾）発足。SJCDレギュラーコース受講生の寺子屋として始まり、審美と補綴を中心に学ぶ勉強会", "speakers": [] } ],
-      "photos": []
-    },
-    {
-      "year": 2007,
-      "items": [ { "date": "2007", "type": "発足", "title": "K.I.M（Kuwata Institute Millennium）-Tokyo 発足。歯科技工士を中心に桑田先生の咬合理論を学ぶ勉強会", "speakers": [] } ],
-      "photos": []
     }
   ]
 }

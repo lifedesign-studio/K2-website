@@ -22,7 +22,9 @@ SITE = json.loads((ROOT / "data/site.json").read_text(encoding="utf-8"))
 THEME = os.environ.get("K2_THEME") or SITE.get("theme", "green")
 EVENTS = json.loads((ROOT / "data/events.json").read_text(encoding="utf-8"))["events"]
 GALLERY = json.loads((ROOT / "data/gallery.json").read_text(encoding="utf-8"))["photos"]
-HISTORY = json.loads((ROOT / "data/history.json").read_text(encoding="utf-8"))["years"]
+_HIST = json.loads((ROOT / "data/history.json").read_text(encoding="utf-8"))
+HISTORY = _HIST["years"]
+ROOTS = _HIST.get("roots", [])
 PEOPLE = json.loads((ROOT / "data/people.json").read_text(encoding="utf-8"))
 COURSE = SITE.get("course", {"status": "closed"})
 RECRUITING = COURSE.get("status") == "recruiting"
@@ -271,7 +273,7 @@ def page_home():
     <p class="eyebrow" style="text-align:center">FOR NEWCOMERS</p>
     <h2 class="section-title" style="text-align:center;margin-bottom:32px">はじめての方へ</h2>
     <div class="guide-grid">
-      <a class="guide-card" href="{rel('/about/', d)}"><span class="g-en">About</span><span class="g-ja">K2について</span><span class="g-tx">理念と、K.I.M・K-ing から続くなりたち</span></a>
+      <a class="guide-card" href="{rel('/about/', d)}"><span class="g-en">About</span><span class="g-ja">K2について</span><span class="g-tx">理念と、北原塾・K.I.M から続くなりたち</span></a>
       <a class="guide-card" href="{rel('/history/', d)}"><span class="g-en">History</span><span class="g-ja">K2の歩み</span><span class="g-tx">これまでの例会・サマーセミナーの記録</span></a>
       <a class="guide-card" href="{rel('/people/', d)}"><span class="g-en">People</span><span class="g-ja">役員・講師紹介</span><span class="g-tx">名誉顧問・主宰、役員、コース講師陣</span></a>
     </div>
@@ -340,12 +342,20 @@ def page_about():
       <img src="{rel(p['photo'], d)}" alt="{e(p['name'])}先生" width="448" height="560" loading="lazy">
       <div class="stack"><p class="p-role">{e(p['role'])}</p><h3 class="leader-name">{e(p['name'])}<span class="p-roma">{e(p['roma'])}</span></h3>
       <p style="color:var(--ink-2)">{e(p['bio'][0])}</p><a class="more" href="{rel('/people/', d)}#{e(p['roma'].split()[-1].lower())}">プロフィールを見る →</a></div></div>"""
+    roots_html = f"""<div class="roots">
+      <div class="root-card"><p class="card-label">SINCE 2007</p><h3>北原塾 → K-ing</h3><p class="root-en">Kitahara Academy</p>
+        <p>2007年、北原信也先生のもと「北原塾」として始まりました。SJCDレギュラーコース受講生の寺子屋として、審美と補綴を中心に症例発表を重ねる勉強会です。のちに名称を「K-ing」と改め、一時は「T-FED」の名称も使いました。2010年に始めた軽井沢での夏合宿が、いまのサマーセミナーの原点です。</p>
+        <a class="more" href="{rel('/history/', d)}#root-king">北原塾・K-ing の歩み →</a></div>
+      <div class="root-card"><p class="card-label">SINCE 2007</p><h3>K.I.M-Tokyo</h3><p class="root-en">Kuwata Institute Millennium</p>
+        <p>同じく2007年、歯科技工士を中心に、桑田正博先生の咬合理論（F.D.O）を学ぶ勉強会として発足しました。「桑田理論を日本に根付かせる」を掲げ、総会や学会発表、オープンミーティングを重ねてきました。</p>
+        <a class="more" href="{rel('/history/', d)}#root-kim">K.I.M の歩み →</a></div>
+    </div>
+    <p class="roots-merge" aria-hidden="true">↓</p>"""
     story = [
-        ("2007", "K.I.M-Tokyo 発足", "歯科技工士を中心に、桑田正博先生の咬合理論を学ぶ勉強会として始まりました。", None),
-        ("2008", "K-ing（北原塾）発足", "SJCDレギュラーコース受講生の寺子屋として、北原信也先生のもとで始まりました。審美と補綴を中心に学ぶ、K2のルーツとなる勉強会です。", {"image": "/assets/history/2013-king-summer.jpg", "caption": "2013年 K-ing サマーセミナー"}),
-        ("2017", "統合し K2 が発足", "K.I.M と K-ing が一つになり、技工の視点と審美・補綴を同じコンセプトで学ぶ場になりました。統合を機に、ハンズオンコースを新設しました。", {"image": "/assets/history/2020-kim-sokai-group.jpg", "caption": "2020年 KIM総会"}),
+        ("2016", "合同のサマーセミナー", "K-ing の創立10周年記念サマーセミナーを、東京の K.I.M と合同で軽井沢で開きました。2つの会が一緒に学ぶ機会が増えていきます。", {"image": "/assets/history/2016-summer-10th-group.jpg", "caption": "2016年 創立10周年記念サマーセミナー"}),
+        ("2017", "統合し K2 が発足", "北原塾・K-ing と K.I.M が一つになり、技工の視点と審美・補綴を同じコンセプトで学ぶ「審美と機能を学ぶスタディグループ」になりました。翌2018年のサマーセミナーでは、桑田正博先生に設立記念講演をいただきました。統合を機に、ハンズオンコースも新設しました。", {"image": "/assets/history/2020-kim-sokai-group.jpg", "caption": "2020年 KIM総会"}),
         ("2026", "日本臨床歯科学会 合同例会で4位", "2026年9月5・6日に京都で開かれた日本臨床歯科学会 第10回合同例会では、東京支部代表として杉山達也先生が症例発表を行い、4位をいただきました。演題は「過蓋咬合を伴う咬合崩壊を呈する患者に対して咬合再構成を行った一症例」。K2の会員は、東京SJCDのステップアップミーティングや例会での発表を目指して学んでいます。", None),
-        ("いま", "例会・サマーセミナー・コース", "東京・八重洲での例会、毎年8月末の軽井沢サマーセミナー、年間のハンズオンコースを軸に、学生から50代まで幅広い歯科医師とコデンタルスタッフが学んでいます。", {"image": "/assets/history/2026-summer-group.jpg", "caption": "2026年 サマーセミナー"}),
+        ("いま", "例会・サマーセミナー・コース", "東京・八重洲での例会（Webでも同時開催）、毎年8月末の軽井沢サマーセミナー、年間のハンズオンコースを軸に、学生から50代まで幅広い歯科医師とコデンタルスタッフが学んでいます。", {"image": "/assets/history/2026-summer-group.jpg", "caption": "2026年 サマーセミナー"}),
     ]
     story_html = ""
     for yr, ttl, txt, ph in story:
@@ -356,7 +366,7 @@ def page_about():
   <div class="wrap split">
     <div><p class="eyebrow">CONCEPT</p><h2 class="section-title">機能性と審美性が<br>正しく融合した歯科医療</h2><p class="en-name">Academy of Tokyo-Function and Esthetic Dentistry</p></div>
     <div class="stack" style="color:var(--ink-2)">
-      <p>K2は、SJCDレギュラーコース受講生の寺子屋として始まった K-ing（Kitahara Academy）と、K.I.M（Kuwata Institute Millennium）-Tokyo が統合したスタディグループです。K.I.Mの目的「桑田先生の咬合理論を学び、臨床で実践し、世界に普及すること」と、K-ingの精神「よく学び、よく遊ぶ」が融合した、アットホームでありながら本質的な勉強ができる場です。</p>
+      <p>K2は、SJCDレギュラーコース受講生の寺子屋として2007年に始まった北原塾（のちの K-ing）と、同じ2007年に発足した K.I.M（Kuwata Institute Millennium）-Tokyo が、2017年に統合したスタディグループです。K.I.Mの目的「桑田先生の咬合理論を学び、臨床で実践し、世界に普及すること」と、K-ingの精神「よく学び、よく遊ぶ」が融合した、アットホームでありながら本質的な勉強ができる場です。</p>
       <p>K2の会員は、例会での症例発表を重ねながら、東京SJCDのステップアップミーティングや例会での発表を目指しています。2026年9月5・6日に京都で開かれた日本臨床歯科学会 第10回合同例会では、東京支部代表として杉山達也先生が症例発表を行い、4位をいただきました。</p>
       <p>私たちは、人々の健康に寄与するために歯科という分野の “Roots” を伸ばしていくことを使命と捉え、それは先人たちの築いてきた “Roots” を学び、次の時代につなげていくことだと考えています。</p>
       <p>桑田先生の教えは「無理なく・無駄なく・難しくなく」をモットーとした修復治療のベースになるもので、セミナーはそのベースを踏まえて日常臨床にすぐに活かせる内容となっています。仕事も、勉強も、遊びも、適切なバランスで。</p>
@@ -376,6 +386,7 @@ def page_about():
 <section class="section section-white">
   <div class="wrap">
     <div class="section-head"><p class="eyebrow">STORY</p><h2 class="section-title">K2のなりたち</h2></div>
+    {roots_html}
     <ol class="story">{story_html}</ol>
     <p style="margin-top:40px"><a class="btn btn-outline" href="{rel('/history/', d)}">年ごとの記録「K2の歩み」を見る</a></p>
   </div>
@@ -408,29 +419,49 @@ def speaker_line(sp):
     return "、".join(out)
 
 
+def history_year(y, d, anchor):
+    rows = ""
+    for it in y["items"]:
+        sp = speaker_line(it["speakers"]) if it["speakers"] else ('<span class="tbd">講師［確認中］</span>' if it["type"] not in ("発足",) and not it["title"] else "")
+        title = f'<span class="h-title">{e(it["title"])}</span>' if it["title"] else ""
+        rows += f'<li><span class="h-date">{e(it["date"])}</span><span class="h-type">{e(it["type"])}</span><span class="h-body">{title}<span class="h-sp">{sp}</span></span></li>'
+    photos = "".join(photo_fig(ph, d) for ph in y.get("photos", []))
+    ph_html = f'<div class="h-photos">{photos}</div>' if photos else ""
+    aid = f' id="{anchor}"' if anchor else ""
+    return f'<section class="h-year"{aid}><h2 class="h-year-num">{y["year"]}</h2><div><ul class="h-list">{rows}</ul>{ph_html}</div></section>'
+
+
 def page_history():
     path, d = "/history/", 1
     years_nav = "".join(f'<a href="#y{y["year"]}">{y["year"]}</a>' for y in HISTORY)
-    blocks = ""
-    for y in HISTORY:
-        rows = ""
-        for it in y["items"]:
-            sp = speaker_line(it["speakers"]) if it["speakers"] else ('<span class="tbd">講師［確認中］</span>' if it["type"] not in ("発足",) and not it["title"] else "")
-            title = f'<span class="h-title">{e(it["title"])}</span>' if it["title"] else ""
-            rows += f'<li><span class="h-date">{e(it["date"])}</span><span class="h-type">{e(it["type"])}</span><span class="h-body">{title}<span class="h-sp">{sp}</span></span></li>'
-        photos = "".join(photo_fig(ph, d) for ph in y.get("photos", []))
-        ph_html = f'<div class="h-photos">{photos}</div>' if photos else ""
-        blocks += f'<section class="h-year" id="y{y["year"]}"><h2 class="h-year-num">{y["year"]}</h2><div><ul class="h-list">{rows}</ul>{ph_html}</div></section>'
-    body = page_head("K2の歩み", "これまでの例会・サマーセミナー・総会の記録です。どなたが講演したかを年ごとに残しています。", "HISTORY", d) + f"""
+    years_nav += "".join(f'<a class="nav-root" href="#root-{r["id"]}">{e(r["name"])}</a>' for r in ROOTS)
+    k2_blocks = "".join(history_year(y, d, f'y{y["year"]}') for y in HISTORY)
+    roots_blocks = ""
+    for r in ROOTS:
+        yrs = "".join(history_year(y, d, None) for y in r["years"])
+        roots_blocks += f"""<div class="root-track" id="root-{r['id']}">
+      <div class="root-head"><p class="eyebrow">SINCE {e(r['since'])} ・ {e(r['en'])}</p><h2 class="section-title">{e(r['name'])}</h2><p class="root-lead">{e(r['lead'])}</p></div>
+      {yrs}
+    </div>"""
+    flow = f"""<div class="lineage" aria-label="K2のなりたち">
+      <a href="#root-king" class="lin-box"><span class="lin-yr">2007</span><span class="lin-nm">北原塾 → K-ing</span></a>
+      <a href="#root-kim" class="lin-box"><span class="lin-yr">2007</span><span class="lin-nm">K.I.M-Tokyo</span></a>
+      <a href="#y2017" class="lin-box lin-k2"><span class="lin-yr">2017</span><span class="lin-nm">統合して K2</span></a>
+    </div>"""
+    body = page_head("K2の歩み", "2007年に別々に始まった「北原塾（のちの K-ing）」と「K.I.M」は、2017年に統合して K2 になりました。K2 になってからの記録を新しい順に、その下に統合前の2つの会の記録を載せています。", "HISTORY", d) + f"""
 <section class="section" style="padding-top:8px">
   <div class="wrap">
+    {flow}
     <nav class="year-nav" aria-label="年">{years_nav}</nav>
-    {blocks}
-    <p class="note">記録は公式Instagramと保管写真をもとにまとめています。抜けている年や講師名、訂正があれば事務局までお知らせください。</p>
+    <div class="track-head"><p class="eyebrow">SINCE 2017</p><h2 class="section-title">K2</h2></div>
+    {k2_blocks}
+    <div class="roots-divider"><p class="eyebrow">BEFORE K2</p><h2 class="section-title">統合前の2つの流れ</h2></div>
+    {roots_blocks}
+    <p class="note">記録は公式Instagram、保管写真、当時の案内や議事録をもとにまとめています。抜けている年や講師名、訂正があれば事務局までお知らせください。</p>
   </div>
 </section>
 """
-    write(path, layout(path, "K2の歩み", body, d, description="K2の例会・サマーセミナー・総会の記録（年ごとの講師と写真）", current="/history/"))
+    write(path, layout(path, "K2の歩み", body, d, description="北原塾・K-ing と K.I.M から K2 までの記録（年ごとの講師と写真）", current="/history/"))
 
 
 def page_people():
