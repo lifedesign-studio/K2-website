@@ -115,20 +115,20 @@
       "name": "上林健",
       "role": "役員",
       "job": "歯科技工士",
-      "org": "TTDLグループ（メンター）",
-      "area": "東京都中央区",
-      "org_url": "https://ttdentallabo.com/group-2-2-2/",
+      "org": "ナチュラルセラミック",
+      "area": "",
+      "org_url": "",
       "bio": [
         "共著『天然歯審美修復のセオリー 図解Q&A』（監著 北原信也、クインテッセンス出版、2017年）。"
       ],
       "links": [],
       "photo": "kambayashi",
-      "_check": "所属技工所の名称・所在地・経歴"
+      "_check": "ナチュラルセラミックの所在地・URL（候補：有限会社ナチュラルセラミック 横浜市青葉区）"
     },
     {
       "slug": "orukawa",
       "name": "尾留川泰志",
-      "role": "役員",
+      "role": "名誉会員",
       "job": "",
       "org": "",
       "area": "",
@@ -137,7 +137,8 @@
       "links": [],
       "photo": null,
       "pending": true,
-      "_check": "所属・経歴（公開情報なし）"
+      "_check": "ご逝去により名誉会員（2026-10-07 先生より）",
+      "memorial": true
     },
     {
       "slug": "miyazawa",
@@ -233,20 +234,6 @@
       ],
       "photo": null,
       "_check": "一番町小川歯科クリニックの小川先生と同一人物か"
-    },
-    {
-      "slug": "nakamura-masayuki",
-      "name": "中村雅之",
-      "role": "役員",
-      "job": "",
-      "org": "",
-      "area": "",
-      "org_url": "",
-      "bio": [],
-      "links": [],
-      "photo": null,
-      "pending": true,
-      "_check": "所属・経歴（江東区 中村歯科医院の院長と同一人物か）"
     },
     {
       "slug": "hashizume",

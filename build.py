@@ -501,14 +501,19 @@ def page_people():
 
     def board_card(b):
         img = teacher_img(b.get("photo"), b["name"], d)
-        org = f'<p class="bc-org">{e(b["org"])}</p><p class="bc-area">{e(b["area"])}</p>' if b.get("org") else '<p class="bc-org is-pending">プロフィール準備中</p>'
+        if b.get("memorial"):
+            org = ""
+        elif b.get("org"):
+            org = f'<p class="bc-org">{e(b["org"])}</p>' + (f'<p class="bc-area">{e(b["area"])}</p>' if b.get("area") else "")
+        else:
+            org = '<p class="bc-org is-pending">プロフィール準備中</p>'
         job = f'<span class="bc-job">{e(b["job"])}</span>' if b.get("job") else ""
         inner = f'{img}<p class="bc-role">{e(b["role"])}</p><p class="person-name">{e(b["name"])} 先生</p>{job}{org}'
         if b.get("pending"):
             return f'<div class="board-card">{inner}</div>'
         return f'<a class="board-card" href="{rel("/people/" + b["slug"] + "/", d)}">{inner}<span class="bc-more">プロフィール →</span></a>'
 
-    groups = [("顧問", "ADVISOR"), ("会長", "PRESIDENT"), ("副会長", "VICE PRESIDENTS"), ("役員", "BOARD MEMBERS"), ("非常勤役員", "ASSOCIATE BOARD MEMBERS")]
+    groups = [("顧問", "ADVISOR"), ("会長", "PRESIDENT"), ("副会長", "VICE PRESIDENTS"), ("役員", "BOARD MEMBERS"), ("非常勤役員", "ASSOCIATE BOARD MEMBERS"), ("名誉会員", "HONORARY MEMBER")]
     board_inner = ""
     for role, en in groups:
         xs = [b for b in PEOPLE.get("board", []) if b["role"] == role]
@@ -554,7 +559,8 @@ def page_person(b):
     org = ""
     if b.get("org"):
         org_name = f'<a href="{e(b["org_url"])}" target="_blank" rel="noopener">{e(b["org"])} ↗</a>' if b.get("org_url") else e(b["org"])
-        org = f'<dl class="pp-facts"><dt>職種</dt><dd>{e(b.get("job", ""))}</dd><dt>所属</dt><dd>{org_name}</dd><dt>地域</dt><dd>{e(b.get("area", ""))}</dd></dl>'
+        area = f'<dt>地域</dt><dd>{e(b["area"])}</dd>' if b.get("area") else ""
+        org = f'<dl class="pp-facts"><dt>職種</dt><dd>{e(b.get("job", ""))}</dd><dt>所属</dt><dd>{org_name}</dd>{area}</dl>'
     body = page_head(f"{b['name']} 先生", "", f"K2 {b['role']}", d, crumb=[("/people/", "役員・講師紹介"), (None, b["name"] + " 先生")]) + f"""
 <section class="section section-white">
   <div class="wrap profile">
