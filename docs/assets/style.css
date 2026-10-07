@@ -415,3 +415,30 @@ h1, h2, h3, .section-title { font-variant-numeric: lining-nums; }
 .root-head { padding: 32px 0 8px; }
 .root-lead { color: var(--ink-2); max-width: 46em; margin-top: 10px; }
 @media (max-width: 640px) { .roots { grid-template-columns: 1fr; } }
+
+/* ---------- Board / person pages ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 2px; padding: 7px 14px; border: 1px solid var(--line); background: var(--paper); font-size: 13px; text-decoration: none; color: var(--ink); }
+.chip:hover { border-color: var(--gold); color: var(--ink); }
+.board-group { margin-top: 40px; }
+.board-group-head { display: flex; align-items: baseline; gap: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line); margin-bottom: 24px; font-family: var(--serif); font-size: 18px; }
+.board-group-head .en { font-family: var(--label); font-size: 10px; letter-spacing: 0.24em; color: var(--gold); }
+.board-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 20px; }
+.board-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px; padding: 24px 16px 20px; background: var(--paper); border: 1px solid var(--line); text-decoration: none; color: var(--ink); transition: border-color .2s; }
+a.board-card:hover { border-color: var(--gold); color: var(--ink); }
+.board-card .person-photo { border-color: var(--line); }
+.board-card .person-blank { background: var(--ground); color: var(--gold); }
+.bc-role { font-family: var(--label); font-size: 10px; letter-spacing: 0.22em; color: var(--gold); }
+.bc-job { font-size: 12px; color: var(--muted); }
+.bc-org { font-size: 13px; color: var(--ink-2); margin-top: 6px; line-height: 1.5; }
+.bc-org.is-pending { opacity: .55; }
+.bc-area { font-size: 12px; color: var(--muted); }
+.bc-more, .person-more { font-size: 12px; color: var(--gold); margin-top: 10px; }
+.person-more { text-decoration: none; }
+.pp-blank { width: 100%; aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; background: var(--paper); border: 1px solid var(--line); font-family: var(--serif); font-size: 72px; color: var(--gold); }
+.pp-facts { display: grid; grid-template-columns: 4em 1fr; gap: 6px 16px; margin: 4px 0 8px; }
+.pp-facts dt { font-size: 13px; color: var(--muted); }
+.pp-facts dd { margin: 0; }
+.pp-course { font-size: 14px; color: var(--gold); }
+.pp-note { font-size: 12px; color: var(--muted); }
+@media (max-width: 640px) { .board-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .board-card { padding: 18px 10px; } }

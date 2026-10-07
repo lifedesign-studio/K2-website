@@ -1,5 +1,5 @@
 {
-  "_note": "leaders=名誉顧問・主宰 / board=K2役員（K2の運営） / lecturers=ハンズオンコース講師陣（コースは別事務局）。各人に bio（説明文）を入れると表示、空なら「プロフィール準備中」。photo は /assets/img/teachers/ の画像キー。",
+  "_note": "leaders=名誉顧問・主宰 / board=K2役員（2020年5月の役員名簿をもとにした下書き。2026-10-07）。各役員は /people/<slug>/ にプロフィールページを生成。bio・links は公開されている医院サイト等から。pending=true は情報未確認で「プロフィール準備中」。_check は確認が必要な点（表示しない）。photo は /assets/img/teachers/ の画像キー（なければ頭文字）。",
   "leaders": [
     {
       "name": "桑田正博",
@@ -10,6 +10,12 @@
         "歯科技工士。ボストン大学客員教授。",
         "PFMクラウン（金属焼付ポーセレン：通称メタルボンド）の共同開発者。アメリカで100年以上続く Academy of Prosthodontics（アメリカ歯科補綴学会）の名誉会員。世界中に5,000人を超える教え子を持つ。",
         "K2の名誉顧問を務めた。"
+      ],
+      "links": [
+        {
+          "label": "公式サイト",
+          "url": "https://www.masahiro-kuwata.com/"
+        }
       ]
     },
     {
@@ -21,10 +27,336 @@
         "東京都出身。1989年 日本大学松戸歯学部卒業。1992年 北原歯科医院開院、2000年 ルウミネッセンス開院、2003年 銀座ノブデンタルオフィス開院。2007年 シンガポールライセンス取得（TP Dental Surgeon 非常勤）。2012年 東京八重洲に TEAM東京 ノブレストラティブデンタルオフィス開院。2014年 シンガポール Asia Healthcare Dental Center 非常勤。",
         "日本大学客員教授（松戸歯学部）、昭和大学歯学部客員教授、日本大学歯学部兼任講師、日本臨床歯科医学会（SJCD）東京支部理事、SJCDレギュラーコースインストラクター。",
         "American Academy of Esthetic Dentistry（AAED）会員。日本歯周病学会、日本歯科保存学会、日本接着歯学会、日本歯科理工学会、日本審美歯科学会、日本顎咬合学会 所属。"
+      ],
+      "links": [
+        {
+          "label": "TEAM東京 ノブレストラティブデンタルオフィス",
+          "url": "https://www.team-tokyo.com/kitahara/index.html"
+        },
+        {
+          "label": "ノブデンタルオフィス",
+          "url": "https://www.nobu-dental-office.com/"
+        }
       ]
     }
   ],
-  "board": [],
+  "board": [
+    {
+      "slug": "shigeno",
+      "name": "茂野啓示",
+      "role": "顧問",
+      "job": "歯科医師",
+      "org": "北山茂野歯科医院",
+      "area": "京都市北区",
+      "org_url": "https://www.shigeno-d.com/",
+      "bio": [
+        "岐阜歯科大学卒業。同大学付属臨床研究所助手を経て、Dr. Raymond L. Kim に師事。1989年 京都市で開院。",
+        "Study club S.J.C.D.東京 ファウンダー・顧問。米国歯周病学会 会員。京都大学 博士（医学）。",
+        "著書『新・一から学ぶ歯周外科の手技』。"
+      ],
+      "links": [
+        {
+          "label": "医院ブログ",
+          "url": "https://shigenodental.jugem.jp/"
+        }
+      ],
+      "photo": "shigeno"
+    },
+    {
+      "slug": "takashima",
+      "name": "高島浩二",
+      "role": "会長",
+      "job": "歯科医師",
+      "org": "医療法人社団TDO ほんごう歯科診療室",
+      "area": "富山県魚津市",
+      "org_url": "http://hongo-shika.info/",
+      "bio": [
+        "2005年 新潟大学歯学部卒業。東京・千葉の歯科医院での勤務を経て、2013年 ほんごう歯科診療室を開設。",
+        "日本臨床歯科学会（東京SJCD）専門医、日本補綴歯科学会 専門医、日本審美歯科学会 認定医、日本顎咬合学会 認定医。K.I.M 理事。"
+      ],
+      "links": [],
+      "photo": "takashima"
+    },
+    {
+      "slug": "fuse",
+      "name": "富施博介",
+      "role": "副会長",
+      "job": "歯科医師",
+      "org": "ライフデンタルクリニック",
+      "area": "川崎市中原区",
+      "org_url": "https://life-dental.com/",
+      "bio": [
+        "2001年 日本歯科大学卒業。2005年 東京SJCDレギュラーコース修了。2007年 ライフデンタルクリニック開業。",
+        "日本臨床歯科学会（SJCD）東京支部 理事。日本顎咬合学会、日本口腔インプラント学会 所属。"
+      ],
+      "links": [],
+      "photo": null,
+      "_check": "SNS（医院のInstagram・Facebook・X）のURL"
+    },
+    {
+      "slug": "toyama",
+      "name": "遠山敏成",
+      "role": "副会長",
+      "job": "歯科医師",
+      "org": "マイスター春日歯科クリニック",
+      "area": "東京都練馬区",
+      "org_url": "https://kasuga-dental.com/",
+      "bio": [
+        "2002年 日本大学歯学部卒業。同大学クラウンブリッジ学講座を経て、2006年 練馬区で開設。",
+        "日本顎咬合学会 Award of the Best Presentation 2015。Academy of Prosthodontics、American Academy of Esthetic Dentistry 会員。K.I.M 理事。",
+        "共著『歯科医師・歯科技工士のための 最新ジルコニア修復』（別冊QDT、2021年）。"
+      ],
+      "links": [],
+      "photo": "toyama",
+      "_check": "Instagram @meisterdc・Facebookが医院公式か"
+    },
+    {
+      "slug": "kamibayashi",
+      "name": "上林健",
+      "role": "役員",
+      "job": "歯科技工士",
+      "org": "TTDLグループ（メンター）",
+      "area": "東京都中央区",
+      "org_url": "https://ttdentallabo.com/group-2-2-2/",
+      "bio": [
+        "共著『天然歯審美修復のセオリー 図解Q&A』（監著 北原信也、クインテッセンス出版、2017年）。"
+      ],
+      "links": [],
+      "photo": "kambayashi",
+      "_check": "所属技工所の名称・所在地・経歴"
+    },
+    {
+      "slug": "orukawa",
+      "name": "尾留川泰志",
+      "role": "役員",
+      "job": "",
+      "org": "",
+      "area": "",
+      "org_url": "",
+      "bio": [],
+      "links": [],
+      "photo": null,
+      "pending": true,
+      "_check": "所属・経歴（公開情報なし）"
+    },
+    {
+      "slug": "miyazawa",
+      "name": "宮澤広人",
+      "role": "役員",
+      "job": "歯科技工士",
+      "org": "MDL（代表）",
+      "area": "",
+      "org_url": "https://ttdentallabo.com/group-2-2-2/",
+      "bio": [
+        "1994年 東北歯科専門学校卒業。2006年 MDL設立。BPS Esthetic denture Technical license。"
+      ],
+      "links": [],
+      "photo": "miyazawa",
+      "_check": "MDLの正式名称・所在地・URL"
+    },
+    {
+      "slug": "sugiyama",
+      "name": "杉山達也",
+      "role": "役員",
+      "job": "歯科医師",
+      "org": "杉山歯科医院",
+      "area": "群馬県前橋市",
+      "org_url": "https://www.sugi-yama-shika.jp/",
+      "bio": [
+        "新潟大学歯学部卒業。横浜市の医療法人、Team東京 ノブデンタルオフィス院長を経て、2014年 杉山歯科医院 院長に就任。",
+        "日本歯周病学会 認定医。東京SJCD 2022年度 平林アワード受賞。2026年 日本臨床歯科学会 第10回合同例会で東京支部代表として発表し4位。"
+      ],
+      "links": [
+        {
+          "label": "医院ブログ",
+          "url": "https://tsdental.amebaownd.com/"
+        }
+      ],
+      "photo": null
+    },
+    {
+      "slug": "koike",
+      "name": "小池朱",
+      "role": "役員",
+      "job": "歯科医師",
+      "org": "ノブデンタルオフィス",
+      "area": "東京都中央区",
+      "org_url": "https://www.nobu-dental-office.com/",
+      "bio": [
+        "日本歯科大学生命歯学部卒業。看護師・保健師の免許も持つ。",
+        "日本臨床歯科学会、日本歯科保存学会 所属。"
+      ],
+      "links": [],
+      "photo": null
+    },
+    {
+      "slug": "horikiri",
+      "name": "堀切雅文",
+      "role": "役員",
+      "job": "歯科医師",
+      "org": "ノブデンタルオフィス東雲",
+      "area": "東京都江東区",
+      "org_url": "https://nobudental-shinonome.com/",
+      "bio": [
+        "日本大学松戸歯学部卒業。同附属病院での臨床研修、ワタナベ歯科医院、ノブレストラティブデンタルオフィスを経て、ノブデンタルオフィス東雲 院長。TEAM TOKYO で睡眠時無呼吸の歯科治療を担当。",
+        "東京SJCD、日本歯周病学会、日本睡眠学会、日本睡眠歯科学会、日本包括的矯正歯科学会 所属。"
+      ],
+      "links": [
+        {
+          "label": "TEAM TOKYO 睡眠歯科",
+          "url": "https://dental-team-tokyo.jp/"
+        }
+      ],
+      "photo": null
+    },
+    {
+      "slug": "ogawa",
+      "name": "小川大輔",
+      "role": "役員",
+      "job": "歯科医師",
+      "org": "一番町小川歯科クリニック",
+      "area": "東京都千代田区",
+      "org_url": "https://www.hanzoumon-dental.jp/",
+      "bio": [
+        "明海大学歯学部卒業。都内の歯科医院での勤務を経て、2018年 一番町小川歯科クリニックを開業。",
+        "東京SJCD 会員、SJCDレギュラーコース修了。厚生労働省認定 歯科医師臨床研修指導医。"
+      ],
+      "links": [
+        {
+          "label": "Instagram",
+          "url": "https://www.instagram.com/ogawadentalclinic/"
+        },
+        {
+          "label": "YouTube",
+          "url": "https://www.youtube.com/channel/UCuLbEeJvQuV-huaUr1x44Wg"
+        }
+      ],
+      "photo": null,
+      "_check": "一番町小川歯科クリニックの小川先生と同一人物か"
+    },
+    {
+      "slug": "nakamura-masayuki",
+      "name": "中村雅之",
+      "role": "役員",
+      "job": "",
+      "org": "",
+      "area": "",
+      "org_url": "",
+      "bio": [],
+      "links": [],
+      "photo": null,
+      "pending": true,
+      "_check": "所属・経歴（江東区 中村歯科医院の院長と同一人物か）"
+    },
+    {
+      "slug": "hashizume",
+      "name": "橋爪英城",
+      "role": "非常勤役員",
+      "job": "歯科医師",
+      "org": "TEAM東京 橋爪エンドドンティクスデンタルオフィス",
+      "area": "東京都中央区",
+      "org_url": "https://www.konkanchiryo.com/",
+      "bio": [
+        "1989年 日本大学松戸歯学部卒業。1993年 同大学院修了、博士（歯学）。米国留学、日本大学松戸歯学部 講師を経て、2012年 開設。",
+        "日本歯科保存学会 歯科保存治療専門医、AAE（米国歯内療法学会）インターナショナルスペシャリストメンバー。"
+      ],
+      "links": [],
+      "photo": "hashizume"
+    },
+    {
+      "slug": "mihashi",
+      "name": "三橋展明",
+      "role": "非常勤役員",
+      "job": "歯科医師（矯正歯科）",
+      "org": "東京加悦矯正歯科クリニック 銀座医院",
+      "area": "東京都中央区",
+      "org_url": "https://www.kireina-hanarabi.jp/",
+      "bio": [
+        "日本歯科大学卒業。日本矯正歯科研究所、医療法人高輪会 矯正歯科部長、北原歯科医院などでの矯正担当を経て、医療法人加悦 理事長。",
+        "日本矯正歯科学会、日本成人矯正歯科学会 会員。日本顎咬合学会 認定医。東京SJCD 会員。"
+      ],
+      "links": [
+        {
+          "label": "Instagram",
+          "url": "https://www.instagram.com/tokyo_kaetsu_kyosei_shika/"
+        },
+        {
+          "label": "Facebook",
+          "url": "https://www.facebook.com/TokyoKaetsu"
+        },
+        {
+          "label": "X",
+          "url": "https://twitter.com/TokyoKaetsu"
+        }
+      ],
+      "photo": null
+    },
+    {
+      "slug": "nakamura-shigeru",
+      "name": "中村茂人",
+      "role": "非常勤役員",
+      "job": "歯科医師",
+      "org": "アレーズ銀座歯科",
+      "area": "東京都中央区",
+      "org_url": "https://www.dc-alaise.jp/",
+      "bio": [
+        "2000年 日本大学松戸歯学部卒業。2008年からアレーズ銀座歯科 院長。2013年 USC卒後研修修了。",
+        "日本大学 客員教授。日本臨床歯科学会東京支部（東京SJCD）理事、日本顎咬合学会関東支部 理事。"
+      ],
+      "links": [],
+      "photo": null
+    },
+    {
+      "slug": "kawahara",
+      "name": "川原淳",
+      "role": "非常勤役員",
+      "job": "歯科医師",
+      "org": "川原歯科医院",
+      "area": "横浜市青葉区",
+      "org_url": "https://www.kawaharasika.com/",
+      "bio": [
+        "1993年 日本歯科大学卒業。2008年 ペンシルベニア大学でマイクロエンド研修。日本歯科大学附属病院 総合診療科 臨床講師。",
+        "東京SJCDレギュラーコース インストラクター。日本口腔インプラント学会 専門医。"
+      ],
+      "links": [
+        {
+          "label": "医院ブログ",
+          "url": "https://www.kawaharasika.com/blog/"
+        }
+      ],
+      "photo": null
+    },
+    {
+      "slug": "uke",
+      "name": "宇毛玲",
+      "role": "非常勤役員",
+      "job": "歯科医師",
+      "org": "ウケデンタルオフィス（総院長）",
+      "area": "東京都港区",
+      "org_url": "https://www.ukedental.com/kamiyacho",
+      "bio": [
+        "1993年 明海大学歯学部卒業。東京八重洲クリニック院長などを経て、2005年 ウケデンタルオフィスを開院。",
+        "日本臨床歯科学会 認定医、SJCDベーシックコース インストラクター。"
+      ],
+      "links": [],
+      "photo": null
+    },
+    {
+      "slug": "nishiyama",
+      "name": "西山英史",
+      "role": "非常勤役員",
+      "job": "歯科医師",
+      "org": "赤坂歯科 西山デンタルオフィス",
+      "area": "東京都港区",
+      "org_url": "https://www.nishiyama-dental.com/",
+      "bio": [
+        "1993年 日本大学松戸歯学部卒業。1997年 同大学院修了。南カリフォルニアへの留学を経て、2004年 開院。",
+        "日本大学 客員教授。2025年 日本臨床歯科学会東京支部（東京SJCD）会長。日本顎咬合学会 認定医。"
+      ],
+      "links": [],
+      "photo": null
+    }
+  ],
   "lecturers": [
     {
       "name": "茂野啓示",

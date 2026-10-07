@@ -464,6 +464,23 @@ def page_history():
     write(path, layout(path, "K2の歩み", body, d, description="北原塾・K-ing と K.I.M から K2 までの記録（年ごとの講師と写真）", current="/history/"))
 
 
+def link_chips(links, d=None):
+    out = ""
+    for l in links:
+        out += f'<a class="chip" href="{e(l["url"])}" target="_blank" rel="noopener">{e(l["label"])}<span aria-hidden="true"> ↗</span></a>'
+    return f'<div class="chips">{out}</div>' if out else ""
+
+
+def board_links(b):
+    links = []
+    if b.get("org_url"):
+        links.append({"label": b["org"] or "公式サイト", "url": b["org_url"]})
+    return links + b.get("links", [])
+
+
+BOARD_BY_NAME = {b["name"]: b for b in PEOPLE.get("board", [])}
+
+
 def page_people():
     path, d = "/people/", 1
     leaders = ""
@@ -471,16 +488,33 @@ def page_people():
         bio = "".join(f"<p>{e(b)}</p>" for b in p["bio"])
         leaders += f"""<article class="profile" id="{e(p['roma'].split()[-1].lower())}">
       <img src="{rel(p['photo'], d)}" alt="{e(p['name'])}先生" width="448" height="560" loading="lazy">
-      <div class="stack"><p class="p-role">{e(p['role'])}</p><h2 class="leader-name">{e(p['name'])}<span class="p-roma">{e(p['roma'])}</span></h2><div class="prose" style="color:var(--ink-2)">{bio}</div></div>
+      <div class="stack"><p class="p-role">{e(p['role'])}</p><h2 class="leader-name">{e(p['name'])}<span class="p-roma">{e(p['roma'])}</span></h2><div class="prose" style="color:var(--ink-2)">{bio}</div>{link_chips(p.get('links', []))}</div>
     </article>"""
+
     def card(x, meta):
         bio = x.get("bio") or ""
         bio_html = f'<p class="person-bio">{e(bio)}</p>' if bio else '<p class="person-bio is-pending">プロフィール準備中</p>'
+        b = BOARD_BY_NAME.get(x["name"])
+        if b and not b.get("pending"):
+            bio_html = f'<a class="person-more" href="{rel("/people/" + b["slug"] + "/", d)}">プロフィール →</a>'
         return f'<div class="person">{teacher_img(x.get("photo"), x["name"], d)}<p class="person-name">{e(x["name"])} 先生</p><p class="person-meta">{e(meta)}</p>{bio_html}</div>'
 
-    if PEOPLE.get("board"):
-        board_inner = '<div class="people-grid people-light">' + "".join(card(b, b.get("role", "")) for b in PEOPLE["board"]) + "</div>"
-    else:
+    def board_card(b):
+        img = teacher_img(b.get("photo"), b["name"], d)
+        org = f'<p class="bc-org">{e(b["org"])}</p><p class="bc-area">{e(b["area"])}</p>' if b.get("org") else '<p class="bc-org is-pending">プロフィール準備中</p>'
+        job = f'<span class="bc-job">{e(b["job"])}</span>' if b.get("job") else ""
+        inner = f'{img}<p class="bc-role">{e(b["role"])}</p><p class="person-name">{e(b["name"])} 先生</p>{job}{org}'
+        if b.get("pending"):
+            return f'<div class="board-card">{inner}</div>'
+        return f'<a class="board-card" href="{rel("/people/" + b["slug"] + "/", d)}">{inner}<span class="bc-more">プロフィール →</span></a>'
+
+    groups = [("顧問", "ADVISOR"), ("会長", "PRESIDENT"), ("副会長", "VICE PRESIDENTS"), ("役員", "BOARD MEMBERS"), ("非常勤役員", "ASSOCIATE BOARD MEMBERS")]
+    board_inner = ""
+    for role, en in groups:
+        xs = [b for b in PEOPLE.get("board", []) if b["role"] == role]
+        if xs:
+            board_inner += f'<div class="board-group"><p class="board-group-head"><span>{e(role)}</span><span class="en">{en}</span></p><div class="board-grid">' + "".join(board_card(b) for b in xs) + "</div></div>"
+    if not board_inner:
         board_inner = '<p class="pending-note">役員の紹介は準備中です。</p>'
     lect = "".join(card(t, "／".join(t.get("topics", []))) for t in PEOPLE["lecturers"])
     body = page_head("役員・講師紹介", "K2の名誉顧問・主宰、役員、ハンズオンコースの講師陣をご紹介します。", "PEOPLE", d) + f"""
@@ -489,7 +523,7 @@ def page_people():
 </section>
 <section class="section" id="board">
   <div class="wrap">
-    <div class="section-head"><p class="eyebrow">BOARD</p><h2 class="section-title">K2 役員</h2><p style="margin-top:12px;color:var(--ink-2)">K2の運営（例会・サマーセミナー・懇親会など）を担う役員です。</p></div>
+    <div class="section-head"><p class="eyebrow">BOARD</p><h2 class="section-title">K2 役員</h2><p style="margin-top:12px;color:var(--ink-2)">K2の運営（例会・サマーセミナー・懇親会など）を担う役員です。お名前を押すと、所属医院・技工所やSNSへのリンクを載せたプロフィールを見られます。</p></div>
     {board_inner}
   </div>
 </section>
@@ -502,6 +536,42 @@ def page_people():
 </section>
 """
     write(path, layout(path, "役員・講師紹介", body, d, current="/people/"))
+    for b in PEOPLE.get("board", []):
+        if not b.get("pending"):
+            page_person(b)
+
+
+def page_person(b):
+    path, d = f"/people/{b['slug']}/", 2
+    if b.get("photo"):
+        src = b["photo"] if b["photo"].startswith("/") else "/assets/img/teachers/" + b["photo"] + ".jpg"
+        img = f'<img src="{rel(src, d)}" alt="{e(b["name"])}先生" width="448" height="560">'
+    else:
+        img = f'<div class="pp-blank" aria-hidden="true">{e(b["name"][0])}</div>'
+    bio = "".join(f"<p>{e(x)}</p>" for x in b.get("bio", []))
+    lect = next((t for t in PEOPLE["lecturers"] if t["name"] == b["name"]), None)
+    lect_html = f'<p class="pp-course">ハンズオンコース講師：{e("／".join(lect.get("topics", [])))}</p>' if lect else ""
+    org = ""
+    if b.get("org"):
+        org_name = f'<a href="{e(b["org_url"])}" target="_blank" rel="noopener">{e(b["org"])} ↗</a>' if b.get("org_url") else e(b["org"])
+        org = f'<dl class="pp-facts"><dt>職種</dt><dd>{e(b.get("job", ""))}</dd><dt>所属</dt><dd>{org_name}</dd><dt>地域</dt><dd>{e(b.get("area", ""))}</dd></dl>'
+    body = page_head(f"{b['name']} 先生", "", f"K2 {b['role']}", d, crumb=[("/people/", "役員・講師紹介"), (None, b["name"] + " 先生")]) + f"""
+<section class="section section-white">
+  <div class="wrap profile">
+    {img}
+    <div class="stack">
+      <p class="p-role">K2 {e(b['role'])}</p>
+      {org}
+      <div class="prose" style="color:var(--ink-2)">{bio}</div>
+      {lect_html}
+      {link_chips(board_links(b))}
+      <p class="pp-note">経歴は所属先の公式サイトなど公開情報をもとに掲載しています。</p>
+      <p><a class="more" href="{rel('/people/', d)}#board">役員一覧へ戻る</a></p>
+    </div>
+  </div>
+</section>
+"""
+    write(path, layout(path, f"{b['name']} 先生", body, d, description=f"K2 {b['role']} {b['name']} 先生のプロフィール", current="/people/"))
 
 
 def teacher_img(photo, name, d):
