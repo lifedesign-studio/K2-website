@@ -343,11 +343,11 @@ def page_about():
       <div class="stack"><p class="p-role">{e(p['role'])}</p><h3 class="leader-name">{e(p['name'])}<span class="p-roma">{e(p['roma'])}</span></h3>
       <p style="color:var(--ink-2)">{e(p['bio'][0])}</p><a class="more" href="{rel('/people/', d)}#{e(p['roma'].split()[-1].lower())}">プロフィールを見る →</a></div></div>"""
     roots_html = f"""<div class="roots">
-      <div class="root-card"><p class="card-label">SINCE 2007</p><h3>北原塾 → K-ing</h3><p class="root-en">Kitahara Academy</p>
-        <p>2007年、北原信也先生のもと「北原塾」として始まりました。SJCDレギュラーコース受講生の寺子屋として、審美と補綴を中心に症例発表を重ねる勉強会です。のちに名称を「K-ing」と改め、一時は「T-FED」の名称も使いました。2010年に始めた軽井沢での夏合宿が、いまのサマーセミナーの原点です。</p>
+      <div class="root-card"><p class="card-label">SINCE 2006</p><h3>北原塾 → K-ing</h3><p class="root-en">Kitahara Academy</p>
+        <p>2006年、北原信也先生のもと「北原塾」として始まりました。SJCDレギュラーコース受講生の寺子屋として、審美と補綴を中心に症例発表を重ねる勉強会です。のちに名称を「K-ing」と改め、一時は「T-FED」の名称も使いました。2010年に始めた軽井沢での夏合宿が、いまのサマーセミナーの原点です。</p>
         <a class="more" href="{rel('/history/', d)}#root-king">北原塾・K-ing の歩み →</a></div>
       <div class="root-card"><p class="card-label">SINCE 2007</p><h3>K.I.M-Tokyo</h3><p class="root-en">Kuwata Institute Millennium</p>
-        <p>同じく2007年、歯科技工士を中心に、桑田正博先生の咬合理論（F.D.O）を学ぶ勉強会として発足しました。「桑田理論を日本に根付かせる」を掲げ、総会や学会発表、オープンミーティングを重ねてきました。</p>
+        <p>2007年、歯科技工士を中心に、桑田正博先生の咬合理論（F.D.O）を学ぶ勉強会として発足しました。「桑田理論を日本に根付かせる」を掲げ、総会や学会発表、オープンミーティングを重ねてきました。</p>
         <a class="more" href="{rel('/history/', d)}#root-kim">K.I.M の歩み →</a></div>
     </div>
     <p class="roots-merge" aria-hidden="true">↓</p>"""
@@ -366,7 +366,7 @@ def page_about():
   <div class="wrap split">
     <div><p class="eyebrow">CONCEPT</p><h2 class="section-title">機能性と審美性が<br>正しく融合した歯科医療</h2><p class="en-name">Academy of Tokyo-Function and Esthetic Dentistry</p></div>
     <div class="stack" style="color:var(--ink-2)">
-      <p>K2は、SJCDレギュラーコース受講生の寺子屋として2007年に始まった北原塾（のちの K-ing）と、同じ2007年に発足した K.I.M（Kuwata Institute Millennium）-Tokyo が、2017年に統合したスタディグループです。K.I.Mの目的「桑田先生の咬合理論を学び、臨床で実践し、世界に普及すること」と、K-ingの精神「よく学び、よく遊ぶ」が融合した、アットホームでありながら本質的な勉強ができる場です。</p>
+      <p>K2は、SJCDレギュラーコース受講生の寺子屋として2006年に始まった北原塾（のちの K-ing）と、2007年に発足した K.I.M（Kuwata Institute Millennium）-Tokyo が、2017年に統合したスタディグループです。K.I.Mの目的「桑田先生の咬合理論を学び、臨床で実践し、世界に普及すること」と、K-ingの精神「よく学び、よく遊ぶ」が融合した、アットホームでありながら本質的な勉強ができる場です。</p>
       <p>K2の会員は、例会での症例発表を重ねながら、東京SJCDのステップアップミーティングや例会での発表を目指しています。2026年9月5・6日に京都で開かれた日本臨床歯科学会 第10回合同例会では、東京支部代表として杉山達也先生が症例発表を行い、4位をいただきました。</p>
       <p>私たちは、人々の健康に寄与するために歯科という分野の “Roots” を伸ばしていくことを使命と捉え、それは先人たちの築いてきた “Roots” を学び、次の時代につなげていくことだと考えています。</p>
       <p>桑田先生の教えは「無理なく・無駄なく・難しくなく」をモットーとした修復治療のベースになるもので、セミナーはそのベースを踏まえて日常臨床にすぐに活かせる内容となっています。仕事も、勉強も、遊びも、適切なバランスで。</p>
@@ -444,11 +444,11 @@ def page_history():
       {yrs}
     </div>"""
     flow = f"""<div class="lineage" aria-label="K2のなりたち">
-      <a href="#root-king" class="lin-box"><span class="lin-yr">2007</span><span class="lin-nm">北原塾 → K-ing</span></a>
+      <a href="#root-king" class="lin-box"><span class="lin-yr">2006</span><span class="lin-nm">北原塾 → K-ing</span></a>
       <a href="#root-kim" class="lin-box"><span class="lin-yr">2007</span><span class="lin-nm">K.I.M-Tokyo</span></a>
       <a href="#y2017" class="lin-box lin-k2"><span class="lin-yr">2017</span><span class="lin-nm">統合して K2</span></a>
     </div>"""
-    body = page_head("K2の歩み", "2007年に別々に始まった「北原塾（のちの K-ing）」と「K.I.M」は、2017年に統合して K2 になりました。K2 になってからの記録を新しい順に、その下に統合前の2つの会の記録を載せています。", "HISTORY", d) + f"""
+    body = page_head("K2の歩み", "2006年に始まった「北原塾（のちの K-ing）」と2007年に始まった「K.I.M」は、2017年に統合して K2 になりました。K2 になってからの記録を新しい順に、その下に統合前の2つの会の記録を載せています。", "HISTORY", d) + f"""
 <section class="section" style="padding-top:8px">
   <div class="wrap">
     {flow}
