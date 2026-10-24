@@ -6,6 +6,7 @@ data/*.json と assets/ から docs/ に静的サイトを書き出す。
 GitHub Pages は main ブランチの /docs フォルダを公開する設定にする。
 """
 import datetime as dt
+import re
 import os
 import html
 import json
@@ -553,7 +554,6 @@ def page_person(b):
         img = f'<img src="{rel(src, d)}" alt="{e(b["name"])}先生" width="448" height="560">'
     else:
         img = f'<div class="pp-blank" aria-hidden="true">{e(b["name"][0])}</div>'
-    bio = "".join(f"<p>{e(x)}</p>" for x in b.get("bio", []))
     lect = next((t for t in PEOPLE["lecturers"] if t["name"] == b["name"]), None)
     lect_html = f'<p class="pp-course">ハンズオンコース講師：{e("／".join(lect.get("topics", [])))}</p>' if lect else ""
     org = ""
@@ -561,23 +561,56 @@ def page_person(b):
         org_name = f'<a href="{e(b["org_url"])}" target="_blank" rel="noopener">{e(b["org"])} ↗</a>' if b.get("org_url") else e(b["org"])
         area = f'<dt>地域</dt><dd>{e(b["area"])}</dd>' if b.get("area") else ""
         org = f'<dl class="pp-facts"><dt>職種</dt><dd>{e(b.get("job", ""))}</dd><dt>所属</dt><dd>{org_name}</dd>{area}</dl>'
+    kana = f'<p class="pp-kana">{e(b["kana"])}</p>' if b.get("kana") else ""
+    lead = f'<p class="pp-lead">{e(b["lead"])}</p>' if b.get("lead") else ""
+    bio = "".join(f"<p>{e(x)}</p>" for x in b.get("bio", []))
+    bio_html = f'<div class="prose" style="color:var(--ink-2)">{bio}</div>' if bio else ""
+
+    # 詳しいプロフィール（career / titles / societies / clinic がある役員だけ表示）
+    blocks = ""
+    if b.get("career"):
+        rows = "".join(f'<li><span class="pp-year">{e(c.get("year", ""))}</span><span>{e(c["text"])}</span></li>' for c in b["career"])
+        blocks += f'<div class="pp-block"><h2 class="pp-h">経歴<span class="en">CAREER</span></h2><ol class="pp-timeline">{rows}</ol></div>'
+    if b.get("titles") or b.get("societies"):
+        t = "".join(f"<li>{e(x)}</li>" for x in b.get("titles", []))
+        so = "".join(f"<li>{e(x)}</li>" for x in b.get("societies", []))
+        cols = (f'<div><h3 class="pp-h3">役職</h3><ul class="pp-list">{t}</ul></div>' if t else "") + (f'<div><h3 class="pp-h3">所属学会</h3><ul class="pp-list">{so}</ul></div>' if so else "")
+        blocks += f'<div class="pp-block"><h2 class="pp-h">役職・所属学会<span class="en">AFFILIATIONS</span></h2><div class="pp-cols">{cols}</div></div>'
+    c = b.get("clinic")
+    if c:
+        pts = "".join(f"<li>{e(x)}</li>" for x in c.get("points", []))
+        site = f'<p><a class="more" href="{e(b["org_url"])}" target="_blank" rel="noopener">医院の公式サイトを見る ↗</a></p>' if b.get("org_url") else ""
+        name = re.sub(r"（.*?）", "", b.get("org", ""))
+        blocks += f'<div class="pp-block"><h2 class="pp-h">{e(name)}について<span class="en">CLINIC</span></h2><p>{e(c.get("text", ""))}</p>' + (f'<ul class="pp-list">{pts}</ul>' if pts else "") + f'{site}</div>'
+    src = ""
+    if b.get("sources"):
+        items = "".join(f'<li><a href="{e(x["url"])}" target="_blank" rel="noopener">{e(x["label"])}</a></li>' for x in b["sources"])
+        src = f'<details class="pp-sources"><summary>掲載情報の出典</summary><ul>{items}</ul></details>'
+
     body = page_head(f"{b['name']} 先生", "", f"K2 {b['role']}", d, crumb=[("/people/", "役員・講師紹介"), (None, b["name"] + " 先生")]) + f"""
 <section class="section section-white">
   <div class="wrap profile">
     {img}
     <div class="stack">
       <p class="p-role">K2 {e(b['role'])}</p>
+      {kana}
       {org}
-      <div class="prose" style="color:var(--ink-2)">{bio}</div>
+      {lead}
+      {bio_html}
       {lect_html}
       {link_chips(board_links(b))}
-      <p class="pp-note">経歴は所属先の公式サイトなど公開情報をもとに掲載しています。</p>
-      <p><a class="more" href="{rel('/people/', d)}#board">役員一覧へ戻る</a></p>
     </div>
+  </div>
+  {f'<div class="wrap pp-detail">{blocks}</div>' if blocks else ''}
+  <div class="wrap pp-foot">
+    {src}
+    <p class="pp-note">経歴は所属先の公式サイトなど公開情報をもとに掲載しています。</p>
+    <p><a class="more" href="{rel('/people/', d)}#board">役員一覧へ戻る</a></p>
   </div>
 </section>
 """
-    write(path, layout(path, f"{b['name']} 先生", body, d, description=f"K2 {b['role']} {b['name']} 先生のプロフィール", current="/people/"))
+    desc = b.get("lead") or f"K2 {b['role']} {b['name']} 先生のプロフィール"
+    write(path, layout(path, f"{b['name']} 先生", body, d, description=desc, current="/people/"))
 
 
 def teacher_img(photo, name, d):

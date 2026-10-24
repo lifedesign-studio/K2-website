@@ -442,3 +442,23 @@ a.board-card:hover { border-color: var(--gold); color: var(--ink); }
 .pp-course { font-size: 14px; color: var(--gold); }
 .pp-note { font-size: 12px; color: var(--muted); }
 @media (max-width: 640px) { .board-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .board-card { padding: 18px 10px; } }
+
+/* 役員プロフィール（詳しい版） */
+.pp-kana { font-size: 13px; color: var(--muted); letter-spacing: .1em; margin-top: -4px; }
+.pp-lead { font-family: var(--serif, serif); font-size: 17px; line-height: 1.9; color: var(--ink); border-left: 2px solid var(--gold); padding-left: 16px; }
+.pp-detail { display: grid; gap: 48px; margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--line); }
+.pp-h { font-family: var(--serif, serif); font-size: 20px; font-weight: 500; display: flex; align-items: baseline; gap: 12px; margin: 0 0 20px; }
+.pp-h .en { font-size: 11px; letter-spacing: .2em; color: var(--gold); font-family: Montserrat, sans-serif; }
+.pp-h3 { font-size: 13px; color: var(--muted); font-weight: 500; margin: 0 0 8px; letter-spacing: .08em; }
+.pp-timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.pp-timeline li { display: grid; grid-template-columns: 5em 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.pp-year { font-family: "Cormorant Garamond", serif; font-size: 18px; color: var(--gold); line-height: 1.4; }
+.pp-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.pp-list { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.pp-block > p { margin: 0 0 12px; color: var(--ink-2); line-height: 1.9; }
+.pp-foot { margin-top: 48px; display: grid; gap: 12px; }
+.pp-sources { font-size: 13px; color: var(--muted); }
+.pp-sources summary { cursor: pointer; }
+.pp-sources ul { margin: 8px 0 0; padding-left: 1.2em; }
+.pp-sources a { color: inherit; }
+@media (max-width: 640px) { .pp-cols { grid-template-columns: 1fr; gap: 20px; } .pp-timeline li { grid-template-columns: 4em 1fr; } .pp-detail { margin-top: 40px; padding-top: 32px; gap: 36px; } }
