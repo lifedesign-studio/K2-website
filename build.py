@@ -505,7 +505,8 @@ def page_people():
         if b.get("memorial"):
             org = ""
         elif b.get("org"):
-            org = f'<p class="bc-org">{e(b["org"])}</p>' + (f'<p class="bc-area">{e(b["area"])}</p>' if b.get("area") else "")
+            area = re.sub(r"（.*?）", "", b.get("area", ""))
+            org = f'<p class="bc-org">{e(b["org"])}</p>' + (f'<p class="bc-area">{e(area)}</p>' if area else "")
         else:
             org = '<p class="bc-org is-pending">プロフィール準備中</p>'
         job = f'<span class="bc-job">{e(b["job"])}</span>' if b.get("job") else ""
@@ -564,7 +565,8 @@ def page_person(b):
     kana = f'<p class="pp-kana">{e(b["kana"])}</p>' if b.get("kana") else ""
     lead = f'<p class="pp-lead">{e(b["lead"])}</p>' if b.get("lead") else ""
     bio = "".join(f"<p>{e(x)}</p>" for x in b.get("bio", []))
-    bio_html = f'<div class="prose" style="color:var(--ink-2)">{bio}</div>' if bio else ""
+    detailed = bool(b.get("career") or b.get("titles"))
+    bio_html = f'<div class="prose" style="color:var(--ink-2)">{bio}</div>' if bio and not detailed else ""
 
     # 詳しいプロフィール（career / titles / societies / clinic がある役員だけ表示）
     blocks = ""
@@ -576,6 +578,9 @@ def page_person(b):
         so = "".join(f"<li>{e(x)}</li>" for x in b.get("societies", []))
         cols = (f'<div><h3 class="pp-h3">役職</h3><ul class="pp-list">{t}</ul></div>' if t else "") + (f'<div><h3 class="pp-h3">所属学会</h3><ul class="pp-list">{so}</ul></div>' if so else "")
         blocks += f'<div class="pp-block"><h2 class="pp-h">役職・所属学会<span class="en">AFFILIATIONS</span></h2><div class="pp-cols">{cols}</div></div>'
+    if bio and detailed:
+        items = "".join(f"<li>{e(x)}</li>" for x in b["bio"])
+        blocks += f'<div class="pp-block"><h2 class="pp-h">著書・講演・受賞など<span class="en">ACTIVITIES</span></h2><ul class="pp-list">{items}</ul></div>'
     c = b.get("clinic")
     if c:
         pts = "".join(f"<li>{e(x)}</li>" for x in c.get("points", []))
